@@ -69,14 +69,8 @@ void CppManager::divideLibraries()
 	{
 		QString name;
 
-		try
-		{
-			name = QFileInfo(lib).fileName();
-		}
-		catch (std::exception E)
-		{
-			qDebug() << E.what();
-		}
+		QFileInfo libInfo(lib);
+		name = libInfo.fileName();
 
 		if (!name.isEmpty() && name.startsWith("libQt"))
 		{
