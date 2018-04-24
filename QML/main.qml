@@ -14,8 +14,8 @@ ApplicationWindow {
 	property real mediumFont: window.font.pointSize + 2
 	property real largeFont: window.font.pointSize + 4
 
-	Material.accent: Material.Red
-	Material.primary: Material.Red
+    Material.accent: "#41cd71"
+    Material.primary: "#41cd71"
 
 	property var buttonColor: Material.accent
 
