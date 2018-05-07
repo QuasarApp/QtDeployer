@@ -12,6 +12,13 @@
 
 # Qt-es
 
+/parts/*
+/prime/*
+/snap/.snapcraft/*
+/stage/*
+
+/source/android/*
+!/source/android/AndroidManifest.xml
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -20,15 +27,26 @@
 *.qbs.user.*
 *.moc
 moc_*.cpp
+moc_*.h
 qrc_*.cpp
 ui_*.h
 Makefile*
-*-build-*
+*build-*
 
 # QtCreator
 
 *.autosave
 
-#QtCtreator Qml
+# QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+
+# QtCtreator CMake
+CMakeLists.txt.user*
+
+
+snap/plugins/__pycache__/
+
+*.snap
+
+\.buildconfig

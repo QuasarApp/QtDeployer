@@ -11,7 +11,7 @@ Page {
 	property int state: MainManager.state
 
 	header: TopBar {
-		text: "Qt Linux Deployer"
+        text: "Qt Deployer"
 
 		ToolButton {
 			text: "➔"

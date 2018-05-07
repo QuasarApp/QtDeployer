@@ -9,7 +9,7 @@ Page {
 	clip: true
 
 	header: TopBar {
-		text: "Qt Linux Deployer"
+		text: "Qt Deployer"
 	}
 
 	Settings {

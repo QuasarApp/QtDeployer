@@ -1,6 +1,6 @@
 QT += qml quick
 
-CONFIG += c++11
+CONFIG += c++14
 
 RESOURCES += qml.qrc
 
@@ -25,6 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+VERSION = 1.0.0.0
+TARGET = QtDeployer
+TEMPLATE = app
+RC_ICONS = res/QtDeployr.ico
 
 SOURCES += \
     main.cpp \

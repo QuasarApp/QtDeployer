@@ -24,6 +24,10 @@ void CppManager::setNotFoundLibs(const QStringList &notFoundLibs)
 	emit notFoundLibsChanged(m_notFoundLibs);
 }
 
+bool CppManager::isQtLib(const QString &lib) const{
+    return lib.indexOf(m_qtdir) == 0;
+}
+
 void CppManager::extractAllLibs(const QStringList &execfiles)
 {
 	for (const QString &execfile : execfiles)
@@ -72,7 +76,7 @@ void CppManager::divideLibraries()
 		QFileInfo libInfo(lib);
 		name = libInfo.fileName();
 
-		if (!name.isEmpty() && name.startsWith("libQt"))
+        if (!name.isEmpty() && isQtLib(libInfo.path()))
 		{
 			m_qtLibraries << name;
 			m_cppLibraries.removeOne(lib);

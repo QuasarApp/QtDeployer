@@ -1,0 +1,28 @@
+name: qt-deployer
+version: '1.0'
+summary: Deploy Qt Project
+description: |
+ Deploy Qt Projects
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+icon: snap/gui/icon.png
+
+apps:
+  qt-deployer:
+    command: bin/QtDeployer
+#    desktop: usr/share/applications/desc.desktop
+    plugs: [desktop, unity7, home, opengl, x11, wayland]
+    environment:
+      LD_LIBRARY_PATH: $SNAP/lib
+      QML_IMPORT_PATH: $SNAP/qml
+      QML2_IMPORT_PATH: $SNAP/qml
+      QT_PLUGIN_PATH: $SNAP/plugins
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/plugins/platforms
+
+parts:
+  qt-deployer:
+    plugin: dump
+    source: .
+

@@ -5,7 +5,7 @@ import QtQuick.Controls.Material 2.0
 ApplicationWindow {
 	id: window
 	visible: true
-	title: qsTr("Qt Linux Deployer")
+    title: qsTr("Qt Deployer")
 
 	width: 600
 	height: sp.implicitHeight + 30
