@@ -1,3 +1,5 @@
+TEMPLATE = app
+
 QT += qml quick
 
 CONFIG += c++14
@@ -20,17 +22,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+TARGET = QtDeployer
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-
-VERSION = 1.0.0.0
-TARGET = QtDeployer
-TEMPLATE = app
-RC_ICONS = res/QtDeployr.ico
 
 SOURCES += \
     main.cpp \
@@ -39,7 +36,8 @@ SOURCES += \
     CPP/mainmanager.cpp \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
-    CPP/qmlmanager.cpp
+    CPP/qmlmanager.cpp \
+    CPP/snapmanager.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -47,4 +45,10 @@ HEADERS += \
     CPP/mainmanager.h \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
-    CPP/qmlmanager.h
+    CPP/qmlmanager.h \
+    CPP/snapmanager.h
+
+
+VERSION = 1.0.0.0
+TEMPLATE = app
+RC_ICONS = res/QtDeployr.ico

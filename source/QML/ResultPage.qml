@@ -1,5 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
+import QtQuick.Layouts 1.3
 
 Page {
 	clip: true
@@ -17,9 +19,23 @@ Page {
 		}
 	}
 
+    Button {
+        id: createSnap
+        text: "Create a snap package"
+        Material.background: buttonColor
+        Layout.alignment: Qt.AlignRight
+        anchors.top: parent.top;
+        onClicked: {
+            SnapManager.start();
+        }
+    }
+
 	ListView {
 		id: listview
-		anchors.fill: parent
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: createSnap.bottom
+        anchors.bottom: parent.bottom
 		ScrollBar.vertical: ScrollBar {}
 
 		model: VisualItemModel {
@@ -59,5 +75,5 @@ Page {
 				model: OutputManager.pathsToCopy
 			}
 		}
-	}
+    }
 }
