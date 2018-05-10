@@ -1,30 +1,37 @@
 name: qt-deployer
-version: '1.0'
+version: '1.0 test1'
 summary: Deploy Qt Project
 description: |
- Deploy Qt Projects
+  Deploy Qt Projects. this application extract all depends library of executable and create launch script for your application.
 
 grade: stable # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs and slots
+confinement: classic # use 'strict' once you have the right plugs and slots
+base: core18
 
 icon: snap/gui/icon.png
 
 apps:
   qt-deployer:
-    command: bin/QtDeployer
+    command: qt5-launch opt/qt-deployer/bin/qt-deployer
 #    desktop: usr/share/applications/desc.desktop
-    plugs: [desktop, unity7, home, opengl, x11, wayland]
-    environment:
-      LD_LIBRARY_PATH: $SNAP/lib
-      QML_IMPORT_PATH: $SNAP/qml
-      QML2_IMPORT_PATH: $SNAP/qml
-      QT_PLUGIN_PATH: $SNAP/plugins
-      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/plugins/platforms
+    plugs: [desktop, home, opengl, x11, wayland]
+
 
 parts:
   qt-deployer:
-    plugin: dump
-    source: .
-    stage-package:
-      - libc6
+    plugin: qmake
+    source: source/
+    build-packages:
+      - qtbase5-dev
+      - qtdeclarative5-dev
+    stage-packages:
+      # Here for the plugins-- they're not linked in automatically.
+      - libqt5gui5
+      - libqt5qml5
+      - libqt5quick5
+      - qml-module-qtquick2
+      - qml-module-qtquick-dialogs
+      - qml-module-qtquick-controls
+      - qml-module-qtgraphicaleffects
+    after: [qt5conf] # A wiki part
 
