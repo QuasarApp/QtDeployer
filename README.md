@@ -23,7 +23,7 @@ The Qt Deployer is gui application for extract all depends library of executable
 You can download the latest version of the application [here](https://github.com/EndrII/Hanoi-Towers/releases).
 
 Or download from official services
-  * Ubuntu
+  * [Ubuntu](https://snapcraft.io/QtDeployer)
 
 
 ## Donate
