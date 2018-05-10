@@ -7,7 +7,7 @@ Page {
 	clip: true
 
 	header: TopBar {
-		text: "Result"
+        text: qsTr("Result")
 
 		ToolButton {
 			text: "➔"
@@ -27,37 +27,37 @@ Page {
 		model: VisualItemModel {
 			ExtendableView {
 				checkable: false
-				title: "Qt Libraries"
+                title: qsTr("Qt Libraries")
 				model: CppManager.qtLibraries
 			}
 
 			ExtendableView {
 				checkable: false
-				title: "Non-Qt Libraries"
+                title: qsTr("Non-Qt Libraries")
 				model: CppManager.cppLibraries
 			}
 
 			ExtendableView {
 				checkable: false
-				title: "Unknown Libraries"
+                title: qsTr("Unknown Libraries")
 				model: CppManager.notFoundLibs
 			}
 
 			ExtendableView {
 				checkable: false
-				title: "Qml Imports"
+                title: qsTr("Qml Imports")
 				model: QmlManager.foundImports
 			}
 
 			ExtendableView {
 				checkable: false
-				title: "Failed Qml Imports"
+                title: qsTr("Failed Qml Imports")
 				model: QmlManager.notFoundImports
 			}
 
 			ExtendableView {
 				checkable: true
-				title: "Copied Paths"
+                title: qsTr("Copied Paths")
 				model: OutputManager.pathsToCopy
 			}
 		}

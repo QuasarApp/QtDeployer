@@ -26,22 +26,22 @@ ColumnLayout {
 		TextField {
 			id: field
 			Layout.fillWidth: true
-			placeholderText: "Enter path or browse"
+            placeholderText: qsTr("Enter path or browse")
 
 			onTextChanged: {
 				if (!MainManager.pathExists(isdir, text))
 				{
-					wlabel.text = "Path doesn't exist"
+                    wlabel.text = qsTr("Path doesn't exist")
 					confirmed = false
 				}
 				else if (!MainManager.hasPrems(text))
 				{
-					wlabel.text = "I don't have permission to access this path"
+                    wlabel.text = qsTr("I don't have permission to access this path")
 					confirmed = false
 				}
 				else
 				{
-					wlabel.text = "This path is OK"
+                    wlabel.text = qsTr("This path is OK")
 					confirmed = true
 				}
 			}

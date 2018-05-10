@@ -11,7 +11,7 @@ Page {
 	property int state: MainManager.state
 
 	header: TopBar {
-        text: "Qt Deployer"
+        text: qsTr("Qt Deployer")
 
 		ToolButton {
 			text: "➔"
@@ -28,7 +28,7 @@ Page {
 		padding: 18
 		anchors.centerIn: parent
 		Material.background: buttonColor
-		text: page.state == 0 ? "Go!":(page.state == 1 ? "Wait!":"Done!")
+        text: page.state == 0 ? "Go!":(page.state == 1 ? qsTr("Wait!"):qsTr("Done!"))
 
 		onClicked: {
 			if (page.state == 0)
