@@ -24,11 +24,15 @@ void CppManager::setNotFoundLibs(const QStringList &notFoundLibs)
 	emit notFoundLibsChanged(m_notFoundLibs);
 }
 
+bool CppManager::isQtLib(const QString &lib) const{
+    return lib.indexOf(m_qtdir) == 0;
+}
+
 void CppManager::extractAllLibs(const QStringList &execfiles)
 {
 	for (const QString &execfile : execfiles)
 		for (const QString &lib : extractLibsFromExecutable(execfile))
-			if (!m_cppLibraries.contains(lib))
+            if (!m_cppLibraries.contains(lib))
 			{
 				m_cppLibraries << lib;
 				extractAllLibs(QStringList(lib));
@@ -69,10 +73,7 @@ void CppManager::divideLibraries()
 	{
 		QString name;
 
-		QFileInfo libInfo(lib);
-		name = libInfo.fileName();
-
-		if (!name.isEmpty() && name.startsWith("libQt"))
+        if (getName(name, lib) && !name.isEmpty() && isQtLib(lib))
 		{
 			m_qtLibraries << name;
 			m_cppLibraries.removeOne(lib);
@@ -91,9 +92,9 @@ void CppManager::start(const QStringList &executables)
 
 	m_notFoundLibs.removeDuplicates();
 
-	emit qtLibrariesChanged(m_qtLibraries);
-	emit cppLibrariesChanged(m_cppLibraries);
-	emit notFoundLibsChanged(m_notFoundLibs);
+    emit qtLibrariesChanged(m_qtLibraries);
+    emit cppLibrariesChanged(m_cppLibraries);
+    emit notFoundLibsChanged(m_notFoundLibs);
 }
 
 QStringList CppManager::getQtLibrariesFullPaths()

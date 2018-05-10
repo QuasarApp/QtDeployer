@@ -24,7 +24,7 @@ class MainManager : public BaseClass
 
 public:
 	explicit MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-						 PluginManager *plg, QObject *parent = nullptr);
+                         PluginManager *plg, QObject *parent = nullptr);
 
 	int state() const;
 

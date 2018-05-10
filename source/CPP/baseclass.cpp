@@ -1,4 +1,5 @@
 #include "baseclass.h"
+#include <QRegularExpression>
 
 QString BaseClass::m_qtdir = QString();
 QString BaseClass::m_outputdir = QString();
@@ -16,6 +17,20 @@ QStringList BaseClass::findFilesInsideDir(const QString &name, const QString &di
 	while (it.hasNext()) files << it.next();
 
 	return files;
+}
+
+bool BaseClass::getName(QString &name, const QString &url) const{
+
+    int index = url.lastIndexOf(QRegularExpression("[\\\/]"));
+
+    if(index < 0 || url.isEmpty()){
+        return false;
+    }
+
+    index = url.length() - index - 1;
+
+    name = url.right(index);
+    return true;
 }
 
 BaseClass::BaseClass(QObject *parent) : QObject(parent) {}

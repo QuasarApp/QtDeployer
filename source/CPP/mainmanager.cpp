@@ -10,7 +10,7 @@ QStringList MainManager::getAllExecutables()
 }
 
 MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-						 PluginManager *plg, QObject *parent)
+                         PluginManager *plg, QObject *parent)
 	: BaseClass(parent)
 {
 	setState(0);
@@ -19,6 +19,7 @@ MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
 	m_qml = qml;
 	m_out = out;
 	m_plg = plg;
+
 }
 
 void MainManager::prepare(const QString &qtdir, const QString &execpath,
@@ -28,7 +29,7 @@ void MainManager::prepare(const QString &qtdir, const QString &execpath,
 	list << qtdir << execpath << projectdir << outdir;
 
 	for (QString &S : list)
-		if (S[S.count() - 1] == "/") S.remove(S.count() - 1, 1);
+        if (S[S.count() - 1] == '/') S.remove(S.count() - 1, 1);
 
 	m_qtdir = list[0];
 	m_executablepath = list[1];

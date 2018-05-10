@@ -9,7 +9,7 @@ Page {
 	clip: true
 
 	header: TopBar {
-		text: "Qt Linux Deployer"
+        text: qsTr("Qt Deployer")
 	}
 
 	Settings {
@@ -26,23 +26,23 @@ Page {
 
 		PathChooser {
 			id: qtdir
-			title: "Qt Build Directory"
+            title: qsTr("Qt Build Directory")
 		}
 
 		PathChooser {
 			id: execpath
 			isdir: false
-			title: "Executable File Path"
+            title: qsTr("Executable File Path")
 		}
 
 		PathChooser {
 			id: projectdir
-			title: "Project Directory"
+            title: qsTr("Project Directory")
 		}
 
 		PathChooser {
 			id: outdir
-			title: "Final Output Directory"
+            title: qsTr("Final Output Directory")
 		}
 
 		Item {
@@ -51,7 +51,7 @@ Page {
 		}
 
 		Button {
-			text: "Next"
+            text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
 			enabled: qtdir.confirmed && execpath.confirmed

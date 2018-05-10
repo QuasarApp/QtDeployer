@@ -19,6 +19,8 @@ class CppManager : public BaseClass
 	QStringList m_cppLibraries;
 	QStringList m_notFoundLibs;
 
+    bool isQtLib(const QString&) const;
+
 public:  // TODO remove this line
 	void extractAllLibs(const QStringList &execfiles);
 	QStringList extractLibsFromExecutable(const QString &execpath);

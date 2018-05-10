@@ -1,6 +1,8 @@
+TEMPLATE = app
+
 QT += qml quick
 
-CONFIG += c++11
+CONFIG += c++14
 
 RESOURCES += qml.qrc
 
@@ -20,6 +22,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+TARGET = QtDeployer
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -42,3 +45,10 @@ HEADERS += \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
     CPP/qmlmanager.h
+
+TRANSLATIONS += \
+    languages/en.ts
+
+VERSION = 1.0.0.0
+TEMPLATE = app
+RC_ICONS = snap/icon.ico

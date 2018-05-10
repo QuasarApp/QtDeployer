@@ -9,7 +9,7 @@ Page {
 	clip: true
 
 	header: TopBar {
-		text: "Prepare"
+        text: qsTr("Prepare")
 
 		ToolButton {
 			text: "➔"
@@ -33,7 +33,7 @@ Page {
 			elide: Text.ElideRight
 			Layout.fillWidth: true
 			font.pointSize: mediumFont
-			text: "Choose Non-Qt Libraries To Copy"
+            text: qsTr("Choose Non-Qt Libraries To Copy")
 		}
 
 		Flickable {
@@ -58,7 +58,7 @@ Page {
 				width: parent.width
 
 				Repeater {
-					model: CppManager.cppLibraries
+                    model: CppManager.cppLibraries
 
 					delegate: CheckDelegate {
 						id: del
@@ -86,17 +86,17 @@ Page {
 		CheckBox {
 			id: checkAll
 			Layout.fillWidth: true
-			text: "Check All The Above"
+            text: qsTr("Check All The Above")
 		}
 
 		CheckBox {
 			id: erase
 			Layout.fillWidth: true
-			text: "Erase Everything In: " + outdir
+            text: qsTr("Erase Everything In: ") + outdir
 		}
 
 		Button {
-			text: "Next"
+            text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
 
