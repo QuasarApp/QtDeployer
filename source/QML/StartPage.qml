@@ -8,16 +8,10 @@ Page {
 	id: page
 	clip: true
 
-	header: TopBar {
-        text: qsTr("Qt Deployer")
-	}
+    header: Header {
+        message: qsTr("Qt Deployer")
+    }
 
-	Settings {
-		property alias qtdir: qtdir.content
-		property alias outdir: outdir.content
-		property alias execpath: execpath.content
-		property alias projectdir: projectdir.content
-	}
 
 	ColumnLayout {
 		spacing: 15
