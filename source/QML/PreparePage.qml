@@ -58,7 +58,7 @@ Page {
 				width: parent.width
 
 				Repeater {
-					model: CppManager.cppLibraries
+                    model: CppManager.cppLibraries
 
 					delegate: CheckDelegate {
 						id: del

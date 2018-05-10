@@ -19,23 +19,9 @@ Page {
 		}
 	}
 
-    Button {
-        id: createSnap
-        text: "Create a snap package"
-        Material.background: buttonColor
-        Layout.alignment: Qt.AlignRight
-        anchors.top: parent.top;
-        onClicked: {
-            SnapManager.start();
-        }
-    }
-
 	ListView {
 		id: listview
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: createSnap.bottom
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
 		ScrollBar.vertical: ScrollBar {}
 
 		model: VisualItemModel {

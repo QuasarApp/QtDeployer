@@ -36,8 +36,7 @@ SOURCES += \
     CPP/mainmanager.cpp \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
-    CPP/qmlmanager.cpp \
-    CPP/snapmanager.cpp
+    CPP/qmlmanager.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -45,9 +44,7 @@ HEADERS += \
     CPP/mainmanager.h \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
-    CPP/qmlmanager.h \
-    CPP/snapmanager.h
-
+    CPP/qmlmanager.h
 
 VERSION = 1.0.0.0
 TEMPLATE = app

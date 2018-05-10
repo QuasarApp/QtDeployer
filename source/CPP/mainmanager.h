@@ -6,7 +6,6 @@
 #include "outputmanager.h"
 #include "pluginmanager.h"
 #include "qmlmanager.h"
-#include "snapmanager.h"
 
 class MainManager : public BaseClass
 {
@@ -18,7 +17,6 @@ class MainManager : public BaseClass
 	QmlManager *m_qml;
 	PluginManager *m_plg;
 	OutputManager *m_out;
-    SnapManager *m_snp;
 
 	int m_state;
 
@@ -26,7 +24,7 @@ class MainManager : public BaseClass
 
 public:
 	explicit MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-                         PluginManager *plg, SnapManager *snp, QObject *parent = nullptr);
+                         PluginManager *plg, QObject *parent = nullptr);
 
 	int state() const;
 

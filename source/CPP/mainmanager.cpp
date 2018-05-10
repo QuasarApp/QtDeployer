@@ -10,7 +10,7 @@ QStringList MainManager::getAllExecutables()
 }
 
 MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-                         PluginManager *plg, SnapManager *snp, QObject *parent)
+                         PluginManager *plg, QObject *parent)
 	: BaseClass(parent)
 {
 	setState(0);
@@ -19,7 +19,6 @@ MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
 	m_qml = qml;
 	m_out = out;
 	m_plg = plg;
-    m_snp = snp;
 
 }
 

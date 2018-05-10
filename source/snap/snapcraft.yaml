@@ -25,4 +25,6 @@ parts:
   qt-deployer:
     plugin: dump
     source: .
+    stage-package:
+      - libc6
 

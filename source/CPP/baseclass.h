@@ -22,6 +22,8 @@ protected:
 
 	QStringList findFilesInsideDir(const QString &name, const QString &dirpath);
 
+    bool getName(QString &name, const QString &url) const;
+
 public:
 	explicit BaseClass(QObject *parent = nullptr);
 };
