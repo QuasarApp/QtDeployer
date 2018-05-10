@@ -14,7 +14,7 @@ supported platform:
 
   -  sudo apt install git snapcraft 
   -  git clone https://github.com/QuasarApp/QtDeployer.git
-  -  cd Hanoi-Towers
+  -  cd QtDeployer
   -  snapcraft
 
 
