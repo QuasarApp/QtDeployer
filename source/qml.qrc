@@ -9,5 +9,6 @@
         <file>QML/ResultPage.qml</file>
         <file>QML/StartPage.qml</file>
         <file>QML/TopBar.qml</file>
+        <file alias="icon">res/icon.png</file>
     </qresource>
 </RCC>

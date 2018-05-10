@@ -29,7 +29,7 @@ void MainManager::prepare(const QString &qtdir, const QString &execpath,
 	list << qtdir << execpath << projectdir << outdir;
 
 	for (QString &S : list)
-		if (S[S.count() - 1] == "/") S.remove(S.count() - 1, 1);
+        if (S[S.count() - 1] == '/') S.remove(S.count() - 1, 1);
 
 	m_qtdir = list[0];
 	m_executablepath = list[1];

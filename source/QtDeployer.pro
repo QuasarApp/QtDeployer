@@ -48,4 +48,4 @@ HEADERS += \
 
 VERSION = 1.0.0.0
 TEMPLATE = app
-RC_ICONS = res/QtDeployr.ico
+RC_ICONS = snap/icon.ico

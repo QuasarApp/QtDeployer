@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QIcon>
 
 #include "CPP/cppmanager.h"
 #include "CPP/mainmanager.h"
@@ -11,6 +12,8 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    app.setWindowIcon(QIcon("://icon"));
 
     CppManager C;
     QmlManager Q;
