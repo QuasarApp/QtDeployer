@@ -13,7 +13,7 @@ supported platform:
 ## Build for Linux (snap)
 
   -  sudo apt install git snapcraft 
-  -  git clone https://github.com/EndrII/Hanoi-Towers.git
+  -  git clone https://github.com/QuasarApp/QtDeployer.git
   -  cd Hanoi-Towers
   -  snapcraft
 
