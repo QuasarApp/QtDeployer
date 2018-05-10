@@ -1,5 +1,5 @@
 name: qt-deployer
-version: '1.0 test1'
+version: '1.0test1'
 summary: Deploy Qt Project
 description: |
   Deploy Qt Projects. this application extract all depends library of executable and create launch script for your application.
