@@ -19,7 +19,7 @@ supported platform:
 
 
 ## Install 
-You can download the latest version of the game [here](https://github.com/EndrII/Hanoi-Towers/releases).
+You can download the latest version of the game [here](https://github.com/QuasarApp/QtDeployer/releases).
 
 Or download from official services
   * Ubuntu
