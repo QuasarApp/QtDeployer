@@ -2,7 +2,7 @@
 # ![Hanoi Towers Logo](/source/res/icon.png)
 
 ***************************
-[![Snap Status](https://build.snapcraft.io/badge/EndrII/QtLinuxDeployer.svg)](https://build.snapcraft.io/user/EndrII/QtLinuxDeployer)
+[![Snap Status](https://build.snapcraft.io/badge/QuasarApp/QtDeployer.svg)](https://build.snapcraft.io/user/QuasarApp/QtDeployer)
 ***************************
 ## What is Qt Deployer
 The Qt Deployer is gui application for extract all depends library of executable and create launch script for your application.
