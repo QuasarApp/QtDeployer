@@ -32,9 +32,6 @@ If you want to help the project, then you can donate a small amount to our bitco
 ### Bitcoin address - 1NJNbDKmezcUcHRfzpBeq2fHeG21oEKX8Q
 
 
-
-# Добро пожаловать в Qt Deployer!
-
 ## Что такое Qt Deployer
 Qt Deployer является GUI-приложением для извлечения всех зависимых библиотек исполняемого файла и создает сценарий запуска для вашего приложения.
 
