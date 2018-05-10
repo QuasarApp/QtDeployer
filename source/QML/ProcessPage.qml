@@ -10,18 +10,9 @@ Page {
 	property bool erase
 	property int state: MainManager.state
 
-	header: TopBar {
-        text: qsTr("Qt Deployer")
-
-		ToolButton {
-			text: "➔"
-			rotation: 180
-			font.pointSize: largeFont
-			anchors.right: parent.right
-			onClicked: swipeview.currentIndex = 0
-			anchors.verticalCenter: parent.verticalCenter
-		}
-	}
+    header: Header {
+        message: qsTr("Qt Deployer")
+    }
 
 	Button {
 		width: 200

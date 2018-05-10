@@ -8,18 +8,9 @@ Page {
 	id: page
 	clip: true
 
-	header: TopBar {
-        text: qsTr("Prepare")
-
-		ToolButton {
-			text: "➔"
-			rotation: 180
-			font.pointSize: largeFont
-			anchors.right: parent.right
-			onClicked: swipeview.currentIndex = 0
-			anchors.verticalCenter: parent.verticalCenter
-		}
-	}
+    header: Header {
+        message: qsTr("Qt Deployer")
+    }
 
 	property string outdir
 	property var cpplibs: []

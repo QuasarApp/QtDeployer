@@ -6,18 +6,10 @@ import QtQuick.Layouts 1.3
 Page {
 	clip: true
 
-	header: TopBar {
-        text: qsTr("Result")
+    header: Header {
+        message: qsTr("Result")
+    }
 
-		ToolButton {
-			text: "➔"
-			rotation: 180
-			font.pointSize: largeFont
-			anchors.right: parent.right
-			onClicked: swipeview.currentIndex = 0
-			anchors.verticalCenter: parent.verticalCenter
-		}
-	}
 
 	ListView {
 		id: listview
