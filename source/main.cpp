@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QIcon>
+#include <QTranslator>
 
 #include "CPP/cppmanager.h"
 #include "CPP/mainmanager.h"
@@ -9,11 +10,28 @@
 #include "CPP/pluginmanager.h"
 #include "CPP/qmlmanager.h"
 
+bool loadTr(QGuiApplication &app){
+    QTranslator translator;
+
+    QString defaultLocale = QLocale::system().name();
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
+
+    if(!translator.load(QString(":/languages/%0").arg(defaultLocale))){
+        return false;
+    }
+    app.installTranslator(&translator);
+
+    return true;
+
+}
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     app.setWindowIcon(QIcon("://icon"));
+
+    loadTr(app);
 
     CppManager C;
     QmlManager Q;

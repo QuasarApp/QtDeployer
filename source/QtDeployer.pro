@@ -46,6 +46,9 @@ HEADERS += \
     CPP/pluginmanager.h \
     CPP/qmlmanager.h
 
+TRANSLATIONS += \
+    languages/en.ts
+
 VERSION = 1.0.0.0
 TEMPLATE = app
 RC_ICONS = snap/icon.ico
