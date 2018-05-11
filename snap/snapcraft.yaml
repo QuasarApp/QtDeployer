@@ -1,5 +1,5 @@
 name: qt-deployer
-version: '1.0test1'
+version: '1.0test2'
 summary: Deploy Qt Project
 description: |
   Deploy Qt Projects. this application extract all depends library of executable and create launch script for your application.
@@ -22,7 +22,6 @@ parts:
     plugin: qmake
     source: source/
     build-packages:
-      - qtbase5-dev
       - qtdeclarative5-dev
     stage-packages:
       # Here for the plugins-- they're not linked in automatically.
@@ -31,7 +30,8 @@ parts:
       - libqt5quick5
       - qml-module-qtquick2
       - qml-module-qtquick-dialogs
-      - qml-module-qtquick-controls
+      - qml-module-qtquick-controls2
       - qml-module-qtgraphicaleffects
+
     after: [qt5conf] # A wiki part
 
