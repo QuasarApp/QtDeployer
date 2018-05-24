@@ -36,7 +36,8 @@ SOURCES += \
     CPP/mainmanager.cpp \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
-    CPP/qmlmanager.cpp
+    CPP/qmlmanager.cpp \
+    CPP/buildmanager.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -44,7 +45,8 @@ HEADERS += \
     CPP/mainmanager.h \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
-    CPP/qmlmanager.h
+    CPP/qmlmanager.h \
+    CPP/buildmanager.h
 
 TRANSLATIONS += \
     languages/en.ts

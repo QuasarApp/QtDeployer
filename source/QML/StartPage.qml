@@ -24,12 +24,6 @@ Page {
 		}
 
 		PathChooser {
-			id: execpath
-			isdir: false
-            title: qsTr("Executable File Path")
-		}
-
-		PathChooser {
 			id: projectdir
             title: qsTr("Project Directory")
 		}
