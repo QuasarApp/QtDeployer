@@ -10,7 +10,7 @@ QStringList MainManager::getAllExecutables()
 }
 
 MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-                         PluginManager *plg, QObject *parent)
+                         PluginManager *plg, BuildManager* bld, QObject *parent)
 	: BaseClass(parent)
 {
 	setState(0);
@@ -19,26 +19,31 @@ MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
 	m_qml = qml;
 	m_out = out;
 	m_plg = plg;
+    m_bld = bld;
+
+    connect(m_bld, &BuildManager::finished, this, &MainManager::buildFinished);
 
 }
 
-void MainManager::prepare(const QString &qtdir, const QString &execpath,
-						  const QString &projectdir, const QString &outdir)
+void MainManager::buildFinished(){
+    m_qml->start();
+    m_plg->start();
+    m_cpp->start(getAllExecutables());
+}
+
+void MainManager::prepare(const QString &qtdir, const QString &projectdir, const QString &outdir)
 {
 	QStringList list;
-	list << qtdir << execpath << projectdir << outdir;
+    list << qtdir  << projectdir << outdir;
 
 	for (QString &S : list)
         if (S[S.count() - 1] == '/') S.remove(S.count() - 1, 1);
 
 	m_qtdir = list[0];
-	m_executablepath = list[1];
-	m_projectdir = list[2];
-	m_outputdir = list[3];
+    m_projectdir = list[1];
+    m_outputdir = list[2];
 
-	m_qml->start();
-	m_plg->start();
-	m_cpp->start(getAllExecutables());
+    m_bld->build();
 }
 
 void MainManager::start(bool erase)

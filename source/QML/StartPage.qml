@@ -42,12 +42,10 @@ Page {
             text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
-			enabled: qtdir.confirmed && execpath.confirmed
-					 && projectdir.confirmed && outdir.confirmed
+            enabled: qtdir.confirmed && projectdir.confirmed && outdir.confirmed
 
 			onClicked: {
-				MainManager.prepare(qtdir.content, execpath.content,
-									projectdir.content, outdir.content)
+                MainManager.prepare(qtdir.content, projectdir.content, outdir.content)
 
 				prp.outdir = outdir.content
 				swipeview.currentIndex = 1

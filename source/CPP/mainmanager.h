@@ -6,6 +6,7 @@
 #include "outputmanager.h"
 #include "pluginmanager.h"
 #include "qmlmanager.h"
+#include "buildmanager.h"
 
 class MainManager : public BaseClass
 {
@@ -17,20 +18,24 @@ class MainManager : public BaseClass
 	QmlManager *m_qml;
 	PluginManager *m_plg;
 	OutputManager *m_out;
+    BuildManager *m_bld;
+
 
 	int m_state;
 
 	QStringList getAllExecutables();
 
+private slots:
+    void buildFinished();
+
 public:
 	explicit MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
-                         PluginManager *plg, QObject *parent = nullptr);
+                         PluginManager *plg, BuildManager* bld, QObject *parent = nullptr);
 
 	int state() const;
 
 public slots:
-	void prepare(const QString &qtdir, const QString &execpath,
-				 const QString &projectdir, const QString &outdir);
+    void prepare(const QString &qtdir, const QString &projectdir, const QString &outdir);
 
 	void start(bool erase);
 

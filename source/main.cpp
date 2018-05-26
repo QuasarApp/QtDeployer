@@ -9,6 +9,8 @@
 #include "CPP/outputmanager.h"
 #include "CPP/pluginmanager.h"
 #include "CPP/qmlmanager.h"
+#include "CPP/buildmanager.h"
+
 
 bool loadTr(QGuiApplication &app){
     QTranslator translator;
@@ -37,8 +39,10 @@ int main(int argc, char *argv[])
     QmlManager Q;
     PluginManager P;
     OutputManager O;
+    BuildManager B;
 
-    MainManager M(&C, &Q, &O, &P);
+
+    MainManager M(&C, &Q, &O, &P, &B);
 
     QQmlApplicationEngine engine;
 
@@ -48,6 +52,8 @@ int main(int argc, char *argv[])
     R->setContextProperty("PluginManager", &P);
     R->setContextProperty("MainManager", &M);
     R->setContextProperty("OutputManager", &O);
+    R->setContextProperty("BuildManager", &B);
+
 
 
     engine.load(QUrl(QLatin1String("qrc:/QML/main.qml")));
