@@ -53,5 +53,6 @@ snap/plugins/__pycache__/
 
 b/
 Build*/
+Release*/
 
 *.stash

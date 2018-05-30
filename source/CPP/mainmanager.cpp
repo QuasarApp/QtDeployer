@@ -26,22 +26,22 @@ MainManager::MainManager(CppManager *cpp, QmlManager *qml, OutputManager *out,
 }
 
 void MainManager::buildFinished(){
+    emit outDirChanged();
     m_qml->start();
     m_plg->start();
     m_cpp->start(getAllExecutables());
 }
 
-void MainManager::prepare(const QString &qtdir, const QString &projectdir, const QString &outdir)
+void MainManager::prepare(const QString &qtdir, const QString &projectdir)
 {
 	QStringList list;
-    list << qtdir  << projectdir << outdir;
+    list << qtdir  << projectdir ;
 
 	for (QString &S : list)
         if (S[S.count() - 1] == '/') S.remove(S.count() - 1, 1);
 
 	m_qtdir = list[0];
     m_projectdir = list[1];
-    m_outputdir = list[2];
 
     m_bld->build();
 }
@@ -71,6 +71,10 @@ bool MainManager::pathExists(bool isdir, const QString &path)
 {
 	if (isdir) return QDir(path).exists();
 	return QFile(path).exists();
+}
+
+const QString& MainManager::outDir() const{
+    return m_outputdir;
 }
 
 void MainManager::setState(int state)

@@ -38,7 +38,24 @@ const QString& BuildManager::log() const{
     return tempLog;
 }
 
-bool BuildManager::initFolderName() {
+bool BuildManager::createFulder(QDir& dir, QString &path, const QString &name) const{
+
+    path = dir.absolutePath() + "/" + name;
+    if(dir.exists(path) && !QDir(path).removeRecursively()){
+
+        path.clear();
+        return false;
+    }
+
+    if(!dir.mkdir(path)){
+        path.clear();
+        return false;
+    }
+
+    return true;
+}
+
+bool BuildManager::initFolders() {
     QDir dir(m_projectdir);
     if(!dir.cd("..")) {
         return false;
@@ -72,15 +89,11 @@ bool BuildManager::initFolderName() {
     }
     projectName = proFile.mid(beginTarget, longTraget);
 
-    tempBuildFolder = dir.absolutePath() + "/Build-" + projectName;
-    if(dir.exists(tempBuildFolder) && !QDir(tempBuildFolder).removeRecursively()){
-
-        tempBuildFolder.clear();
+    if(!createFulder(dir, tempBuildFolder, "Build-" + projectName)){
         return false;
     }
 
-    if(!dir.mkdir(tempBuildFolder)){
-        tempBuildFolder.clear();
+    if(!createFulder(dir, m_outputdir, "Release-" + projectName)){
         return false;
     }
 
@@ -88,7 +101,7 @@ bool BuildManager::initFolderName() {
 }
 
 bool BuildManager::build(){
-    if(!initQMake() || !initFolderName()){
+    if(!initQMake() || !initFolders()){
         return false;
     }
 

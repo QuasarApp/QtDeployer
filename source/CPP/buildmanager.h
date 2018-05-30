@@ -15,7 +15,8 @@ private:
     QString projectName;
     QProcess pQMake;
 
-    bool initFolderName();
+    bool createFulder(QDir& dir, QString& path, const QString& name) const;
+    bool initFolders();
     bool initQMake();
 
 private slots:

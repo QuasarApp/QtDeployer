@@ -28,11 +28,6 @@ Page {
             title: qsTr("Project Directory")
 		}
 
-		PathChooser {
-			id: outdir
-            title: qsTr("Final Output Directory")
-		}
-
 		Item {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
@@ -42,12 +37,12 @@ Page {
             text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
-            enabled: qtdir.confirmed && projectdir.confirmed && outdir.confirmed
+            enabled: qtdir.confirmed && projectdir.confirmed
 
 			onClicked: {
-                MainManager.prepare(qtdir.content, projectdir.content, outdir.content)
+                MainManager.prepare(qtdir.content, projectdir.content)
 
-				prp.outdir = outdir.content
+                prp.outdir = MainManager.outDir
 				swipeview.currentIndex = 1
 			}
 		}

@@ -1,0 +1,37 @@
+name: qt-deployer
+version: '1.0test2'
+summary: Deploy Qt Project
+description: |
+  Deploy Qt Projects. this application extract all depends library of executable and create launch script for your application.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+icon: snap/gui/icon.png
+
+apps:
+  qt-deployer:
+    command: bin/qt-deployer
+
+    plugs: [desktop, unity7, home, opengl, x11, wayland]
+    environment:
+      LD_LIBRARY_PATH: $SNAP/lib
+      QML_IMPORT_PATH: $SNAP/qml
+      QML2_IMPORT_PATH: $SNAP/qml
+      QT_PLUGIN_PATH: $SNAP/plugins
+      QT_QPA_PLATFORM_PLUGIN_PATH: $SNAP/plugins/platforms
+
+
+parts:
+  qt-deployer:
+    plugin: dump
+    source: app/
+
+    stage-packages:
+      # Here for the plugins-- they're not linked in automatically.
+      - libx11-xcb-dev
+      - libglu1-mesa-dev
+      - libxrender-dev
+      - libxi-dev
+
+
