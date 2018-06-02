@@ -32,6 +32,14 @@ void MainManager::buildFinished(){
     m_cpp->start(getAllExecutables());
 }
 
+BuildManager* MainManager::getBuild(){
+    return m_bld;
+}
+
+CppManager* MainManager::getCpp(){
+    return m_cpp;
+}
+
 void MainManager::prepare(const QString &qtdir, const QString &projectdir)
 {
 	QStringList list;
@@ -44,6 +52,11 @@ void MainManager::prepare(const QString &qtdir, const QString &projectdir)
     m_projectdir = list[1];
 
     m_bld->build();
+}
+
+void MainManager::deploy(const QStringList& list){
+    m_cpp->setCppLibraries(list);
+    start(false);
 }
 
 void MainManager::start(bool erase)

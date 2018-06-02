@@ -11,7 +11,7 @@ BuildManager::BuildManager(QObject *parent) : BaseClass(parent)
 
 void BuildManager::buildLog(){
     tempLog = pQMake.readAll();
-    emit logChanged();
+    emit logChanged(tempLog);
 }
 
 void BuildManager::buildFinihed(int error) {

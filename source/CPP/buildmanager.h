@@ -28,7 +28,7 @@ public:
     bool build();
 
 signals:
-    void logChanged();
+    void logChanged(QString);
     void finished();
 
 public slots:

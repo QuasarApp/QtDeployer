@@ -1,6 +1,12 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
+#if QT_VERSION > 0x050501
+    #include <QGuiApplication>
+    #include <QQmlApplicationEngine>
+    #include <QQmlContext>
+#else
+    #include <QApplication>
+    #include "mainwindow.h"
+#endif
+
 #include <QIcon>
 #include <QTranslator>
 
@@ -12,7 +18,8 @@
 #include "CPP/buildmanager.h"
 
 
-bool loadTr(QGuiApplication &app){
+
+bool loadTr(QGuiApplication *app){
     QTranslator translator;
 
     QString defaultLocale = QLocale::system().name();
@@ -21,7 +28,7 @@ bool loadTr(QGuiApplication &app){
     if(!translator.load(QString(":/languages/%0").arg(defaultLocale))){
         return false;
     }
-    app.installTranslator(&translator);
+    app->installTranslator(&translator);
 
     return true;
 
@@ -29,9 +36,18 @@ bool loadTr(QGuiApplication &app){
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QGuiApplication *app;;
 
-    app.setWindowIcon(QIcon("://icon"));
+
+#if QT_VERSION > 0x050501
+    app = new QGuiApplication(argc, argv);
+#else
+    app = new QApplication(argc, argv);
+
+#endif
+
+
+    app->setWindowIcon(QIcon("://icon"));
 
     loadTr(app);
 
@@ -44,6 +60,7 @@ int main(int argc, char *argv[])
 
     MainManager M(&C, &Q, &O, &P, &B);
 
+#if QT_VERSION > 0x050501
     QQmlApplicationEngine engine;
 
     auto *R = engine.rootContext();
@@ -58,6 +75,14 @@ int main(int argc, char *argv[])
 
     engine.load(QUrl(QLatin1String("qrc:/QML/main.qml")));
     if (engine.rootObjects().isEmpty()) return -1;
+#else
+    MainWindow mainApp(&M);
+    mainApp.show();
+#endif
 
-    return app.exec();
+
+    int returnCode = app->exec();
+    delete app;
+    return  returnCode;
+
 }

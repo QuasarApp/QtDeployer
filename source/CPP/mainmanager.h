@@ -35,9 +35,13 @@ public:
 
 	int state() const;
 
+    BuildManager* getBuild();
+    CppManager* getCpp();
+
 public slots:
     void prepare(const QString &qtdir, const QString &projectdir);
 
+    void deploy(const QStringList& list);
 	void start(bool erase);
     const QString& outDir() const;
 

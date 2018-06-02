@@ -2,6 +2,10 @@ TEMPLATE = app
 
 QT += qml quick
 
+lessThan(QT_MINOR_VERSION, 6){
+    QT += widgets
+}
+
 CONFIG += c++14
 
 RESOURCES += qml.qrc
@@ -37,7 +41,11 @@ SOURCES += \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
     CPP/qmlmanager.cpp \
-    CPP/buildmanager.cpp
+    CPP/buildmanager.cpp \
+    mainwindow.cpp \
+    CPP/buildpage.cpp \
+    CPP/deploypage.cpp \
+    CPP/listmodel.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -46,7 +54,11 @@ HEADERS += \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
     CPP/qmlmanager.h \
-    CPP/buildmanager.h
+    CPP/buildmanager.h \
+    mainwindow.h \
+    CPP/buildpage.h \
+    CPP/deploypage.h \
+    CPP/listmodel.h
 
 TRANSLATIONS += \
     languages/en.ts
@@ -54,3 +66,8 @@ TRANSLATIONS += \
 VERSION = 1.0.0.0
 TEMPLATE = app
 RC_ICONS = snap/icon.ico
+
+FORMS += \
+    mainwindow.ui \
+    CPP/buildpage.ui \
+    CPP/deploypage.ui
