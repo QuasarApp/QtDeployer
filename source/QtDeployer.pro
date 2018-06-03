@@ -73,7 +73,8 @@ HEADERS += \
 }
 
 TRANSLATIONS += \
-    languages/en.ts
+    languages/en.ts \
+    languages/ru.ts
 
 VERSION = 1.0.0.0
 TEMPLATE = app

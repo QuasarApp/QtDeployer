@@ -16,5 +16,6 @@
     </qresource>
     <qresource prefix="/languages">
         <file alias="en">languages/en.qm</file>
+        <file alias="ru">languages/ru.qm</file>
     </qresource>
 </RCC>
