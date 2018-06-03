@@ -56,7 +56,7 @@ void MainManager::prepare(const QString &qtdir, const QString &projectdir)
 
 void MainManager::deploy(const QStringList& list){
     m_cpp->setCppLibraries(list);
-    start(false);
+    start(true);
 }
 
 void MainManager::start(bool erase)

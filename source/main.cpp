@@ -1,4 +1,6 @@
-#if QT_VERSION > 0x050501
+#include <QtGlobal>
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
     #include <QGuiApplication>
     #include <QQmlApplicationEngine>
     #include <QQmlContext>
@@ -16,22 +18,24 @@
 #include "CPP/pluginmanager.h"
 #include "CPP/qmlmanager.h"
 #include "CPP/buildmanager.h"
+#include <iostream>
 
 
 
-bool loadTr(QGuiApplication *app){
-    QTranslator translator;
+bool initLocale(const QString &locale, QGuiApplication& app, QTranslator &translator){
 
     QString defaultLocale = QLocale::system().name();
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
 
+    if(!locale.isEmpty() && translator.load(QString(":/languages/%0").arg(locale))){
+        return app.installTranslator(&translator);
+    }
+
     if(!translator.load(QString(":/languages/%0").arg(defaultLocale))){
         return false;
     }
-    app->installTranslator(&translator);
 
-    return true;
-
+    return app.installTranslator(&translator);
 }
 
 int main(int argc, char *argv[])
@@ -39,7 +43,7 @@ int main(int argc, char *argv[])
     QGuiApplication *app;;
 
 
-#if QT_VERSION > 0x050501
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     app = new QGuiApplication(argc, argv);
 #else
     app = new QApplication(argc, argv);
@@ -49,7 +53,17 @@ int main(int argc, char *argv[])
 
     app->setWindowIcon(QIcon("://icon"));
 
-    loadTr(app);
+    QTranslator translator;
+
+    QString locale = "";
+
+    if(argc > 1) {
+        locale = QString::fromLatin1(argv[1]);
+    }
+
+    if(!initLocale(locale, *app, translator)){
+        std::cout << "error load language : " << locale.toStdString() <<std::endl;
+    }
 
     CppManager C;
     QmlManager Q;
@@ -60,7 +74,7 @@ int main(int argc, char *argv[])
 
     MainManager M(&C, &Q, &O, &P, &B);
 
-#if QT_VERSION > 0x050501
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     QQmlApplicationEngine engine;
 
     auto *R = engine.rootContext();

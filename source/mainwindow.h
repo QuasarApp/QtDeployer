@@ -20,7 +20,7 @@ private:
     BuildPage *buidlpage;
     DeployPage *deployPage;
 
-    initMenu();
+    void initMenu();
 
 private slots:
     void buidlFinisfed();

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include "CPP/about.h"
 
 MainWindow::MainWindow(MainManager * mainManager, QWidget *parent) :
     QMainWindow(parent),
@@ -8,6 +9,7 @@ MainWindow::MainWindow(MainManager * mainManager, QWidget *parent) :
 {
     _mainManager = mainManager;
     ui->setupUi(this);
+
 
     buidlpage = new BuildPage(this);
     deployPage = new DeployPage(_mainManager->getCpp() ,this);
@@ -17,8 +19,8 @@ MainWindow::MainWindow(MainManager * mainManager, QWidget *parent) :
 
     ui->stackedWidget->setCurrentIndex(0);
 
+    initMenu();
 
-    connect(ui->menubar, SIGNAL(build(QString,QString)), _mainManager, SLOT(prepare(QString,QString)));
     connect(buidlpage, SIGNAL(build(QString,QString)), _mainManager, SLOT(prepare(QString,QString)));
     connect(_mainManager->getBuild(), SIGNAL(logChanged(QString)), buidlpage, SLOT(log(QString)));
     connect(_mainManager->getBuild(), SIGNAL(finished()), this, SLOT(buidlFinisfed()));
@@ -32,14 +34,23 @@ void MainWindow::newDeploy(){
 }
 
 void MainWindow::initMenu(){
-    QAction *deploy = new QAction(tr("new deploy"));
+
+    QMenu *file = new QMenu(tr("Qt-Deployer"));
+
+    QAction *deploy = new QAction(tr("new deploy"), this);
     connect(deploy, SIGNAL(triggered(bool)),SLOT(newDeploy()));
-    ui->menubar->addAction(deploy);
+    file->addAction(deploy);
 
-    QAction *about = new QAction(tr("about"));
+    QAction *about = new QAction(tr("about"), this);
     connect(about, SIGNAL(triggered(bool)),SLOT(about()));
-    ui->menubar->addAction(about);
+    file->addAction(about);
 
+    ui->menubar->addMenu(file);
+
+}
+
+void MainWindow::about(){
+    (new About())->show();
 }
 
 void MainWindow::buidlFinisfed(){

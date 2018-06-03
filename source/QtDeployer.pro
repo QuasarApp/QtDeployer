@@ -41,13 +41,7 @@ SOURCES += \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
     CPP/qmlmanager.cpp \
-    CPP/buildmanager.cpp \
-    mainwindow.cpp \
-    CPP/buildpage.cpp \
-    CPP/deploypage.cpp \
-    CPP/listmodel.cpp \
-    CPP/listviewdelegate.cpp \
-    CPP/about.cpp
+    CPP/buildmanager.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -56,13 +50,27 @@ HEADERS += \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
     CPP/qmlmanager.h \
-    CPP/buildmanager.h \
+    CPP/buildmanager.h
+
+
+lessThan(QT_MINOR_VERSION, 6){
+
+SOURCES += \
+    mainwindow.cpp \
+    CPP/buildpage.cpp \
+    CPP/deploypage.cpp \
+    CPP/listmodel.cpp \
+    CPP/listviewdelegate.cpp \
+    CPP/about.cpp
+
+HEADERS += \
     mainwindow.h \
     CPP/buildpage.h \
     CPP/deploypage.h \
     CPP/listmodel.h \
     CPP/listviewdelegate.h \
     CPP/about.h
+}
 
 TRANSLATIONS += \
     languages/en.ts
