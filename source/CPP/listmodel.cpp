@@ -3,37 +3,26 @@
 ListModel::ListModel(QObject *parent)
     : QStandardItemModel(parent)
 {
-
-}
-
-QVariant ListModel::headerData(int section, Qt::Orientation orientation, int) const
-{
-    if(orientation == Qt::Vertical){
-        switch (section) {
-        case 0:
-            return tr("lib Path");
-        case 1:
-            return tr("is Deploy");
-        default:
-            return QVariant();
-            break;
-        }
-    }
-    return QVariant();
-}
-
-int ListModel::rowCount(const QModelIndex &parent) const
-{
-    if (parent.isValid())
-        return 0;
-
-    return source.size();
+    setColumnCount(2);
+    this->setHorizontalHeaderLabels(QStringList()<<tr("path")<<tr("add"));
 }
 
 QVariant ListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
+
+    if (role == Qt::CheckStateRole && index.column() == 1){
+        if (source[index.row()].second)
+            return Qt::Checked;
+        else
+            return Qt::Unchecked;
+    }
+
+    if(role == Qt::EditRole && index.column() == 1){
+        return source[index.row()].second;
+    }
+
 
     if(role == Qt::DisplayRole){
         switch (index.column()) {
@@ -54,42 +43,31 @@ bool ListModel::setData(const QModelIndex &index, const QVariant &value, int rol
         return false;
     }
 
-    if (data(index, role) != value) {
+    if (data(index, role) != value)
+    {
         source[index.row()].second = value.toBool();
-        emit dataChanged(index, index, QVector<int>() << role);
+        emit dataChanged(index, index);
         return true;
     }
     return false;
 }
 
-Qt::ItemFlags ListModel::flags(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return Qt::NoItemFlags;
-
-    if (index.column() == 1){
-        return Qt::ItemIsSelectable;
-    }
-
-    return Qt::NoItemFlags; // FIXME: Implement me!
-}
-
 void ListModel::setSource(const QStringList &_source){
-
-    beginResetModel();
 
     source.clear();
     for(const QString &i : _source){
         source.push_back(QPair<QString, bool>(i, false));
     }
-    endResetModel();
+
+    this->setRowCount(source.count());
+
 }
 
-QStringList ListModel::getSelectedList()const {
+QStringList ListModel::getSelectedList(bool all)const {
     QStringList list;
 
     for (const QPair<QString, bool> &p: source){
-        if(p.second){
+        if(p.second || all){
             list.push_back(p.first);
         }
     }

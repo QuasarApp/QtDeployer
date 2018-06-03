@@ -45,7 +45,9 @@ SOURCES += \
     mainwindow.cpp \
     CPP/buildpage.cpp \
     CPP/deploypage.cpp \
-    CPP/listmodel.cpp
+    CPP/listmodel.cpp \
+    CPP/listviewdelegate.cpp \
+    CPP/about.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -58,7 +60,9 @@ HEADERS += \
     mainwindow.h \
     CPP/buildpage.h \
     CPP/deploypage.h \
-    CPP/listmodel.h
+    CPP/listmodel.h \
+    CPP/listviewdelegate.h \
+    CPP/about.h
 
 TRANSLATIONS += \
     languages/en.ts
@@ -70,4 +74,5 @@ RC_ICONS = snap/icon.ico
 FORMS += \
     mainwindow.ui \
     CPP/buildpage.ui \
-    CPP/deploypage.ui
+    CPP/deploypage.ui \
+    CPP/about.ui

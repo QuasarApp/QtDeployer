@@ -5,6 +5,7 @@
 #include "listmodel.h"
 #include "mainmanager.h"
 #include "cppmanager.h"
+#include "listviewdelegate.h"
 
 namespace Ui {
 class DeployPage;
@@ -25,10 +26,12 @@ private:
     CppManager *m_cpp;
     Ui::DeployPage *ui;
     ListModel *model;
+    ListViewDelegate *delegate;
 
 private slots:
     void deployClicked();
     void checkChanged(int);
+    void clicked(QModelIndex);
 
 signals:
     void deploy(QStringList);

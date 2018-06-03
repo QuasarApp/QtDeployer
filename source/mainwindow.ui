@@ -24,6 +24,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -33,24 +34,7 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menusettings">
-    <property name="title">
-     <string>file</string>
-    </property>
-    <addaction name="actionsettings"/>
-    <addaction name="actionexit"/>
-   </widget>
-   <widget class="QMenu" name="menuabout">
-    <property name="title">
-     <string>about</string>
-    </property>
-    <addaction name="actioncontact"/>
-    <addaction name="actionabout"/>
-   </widget>
-   <addaction name="menusettings"/>
-   <addaction name="menuabout"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actioncontact">
    <property name="text">
     <string>contact</string>
@@ -63,7 +47,7 @@
   </action>
   <action name="actionsettings">
    <property name="text">
-    <string>settings</string>
+    <string>new deploy</string>
    </property>
   </action>
   <action name="actionexit">

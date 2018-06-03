@@ -20,9 +20,13 @@ private:
     BuildPage *buidlpage;
     DeployPage *deployPage;
 
+    initMenu();
+
 private slots:
     void buidlFinisfed();
     void stateChanged(int);
+    void newDeploy();
+    void about();
 public:
     explicit MainWindow(MainManager * mainManager, QWidget *parent = 0);
     ~MainWindow();
