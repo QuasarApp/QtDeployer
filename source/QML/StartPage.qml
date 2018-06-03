@@ -24,19 +24,8 @@ Page {
 		}
 
 		PathChooser {
-			id: execpath
-			isdir: false
-            title: qsTr("Executable File Path")
-		}
-
-		PathChooser {
 			id: projectdir
             title: qsTr("Project Directory")
-		}
-
-		PathChooser {
-			id: outdir
-            title: qsTr("Final Output Directory")
 		}
 
 		Item {
@@ -48,14 +37,12 @@ Page {
             text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
-			enabled: qtdir.confirmed && execpath.confirmed
-					 && projectdir.confirmed && outdir.confirmed
+            enabled: qtdir.confirmed && projectdir.confirmed
 
 			onClicked: {
-				MainManager.prepare(qtdir.content, execpath.content,
-									projectdir.content, outdir.content)
+                MainManager.prepare(qtdir.content, projectdir.content)
 
-				prp.outdir = outdir.content
+                prp.outdir = MainManager.outDir
 				swipeview.currentIndex = 1
 			}
 		}

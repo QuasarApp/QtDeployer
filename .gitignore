@@ -50,3 +50,9 @@ snap/plugins/__pycache__/
 *.snap
 
 \.buildconfig
+
+b/
+Build*/
+Release*/
+
+*.stash

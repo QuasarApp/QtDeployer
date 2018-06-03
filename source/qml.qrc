@@ -12,8 +12,10 @@
         <file alias="icon">res/icon.png</file>
         <file>QML/Header.qml</file>
         <file>QML/About.qml</file>
+        <file>QML/Theme.js</file>
     </qresource>
     <qresource prefix="/languages">
         <file alias="en">languages/en.qm</file>
+        <file alias="ru">languages/ru.qm</file>
     </qresource>
 </RCC>
