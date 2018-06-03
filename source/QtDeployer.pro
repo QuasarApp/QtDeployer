@@ -1,9 +1,10 @@
 TEMPLATE = app
 
-QT += qml quick
 
 lessThan(QT_MINOR_VERSION, 6){
     QT += widgets
+}else {
+    QT += qml quick
 }
 
 CONFIG += c++14
