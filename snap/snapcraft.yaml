@@ -13,7 +13,7 @@ apps:
   qt-deployer:
     command: desktop-launch $SNAP/opt/qt-deployer/bin/qt-deployer
 #    desktop: usr/share/applications/desc.desktop
-    plugs: [desktop, home, opengl, x11, wayland, removable-media, gsettings, DBus]
+    plugs: [desktop, home, opengl, x11, wayland, removable-media, gsettings, dbus]
 
 
 parts:
