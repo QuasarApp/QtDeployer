@@ -101,7 +101,13 @@ bool BuildManager::initFolders() {
 }
 
 bool BuildManager::build(){
-    if(!initQMake() || !initFolders()){
+    if(!initQMake()){
+        emit logChanged(tr("init QMake error!"));
+        return false;
+    }
+
+    if(!initFolders()){
+        emit logChanged(tr("init Folders error!"));
         return false;
     }
 
@@ -111,11 +117,22 @@ bool BuildManager::build(){
 
     pQMake.start();
 
+    if(pQMake.state() == QProcess::NotRunning){
+        emit logChanged(tr("run qmake error!"));
+        return false;
+    }
+
     if(!pQMake.waitForFinished()){
         return false;
     }
 
     pQMake.setProgram("make");
+
+    if(pQMake.state() == QProcess::NotRunning){
+        emit logChanged(tr("run qmake error!"));
+        return false;
+    }
+
     pQMake.setArguments(QStringList() << QString("-j%0").arg(QThread::idealThreadCount()));
     pQMake.start();
 

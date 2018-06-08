@@ -86,3 +86,6 @@ FORMS += \
     CPP/buildpage.ui \
     CPP/deploypage.ui \
     CPP/about.ui
+
+DISTFILES += \
+    ../snap/snapcraft.yaml
