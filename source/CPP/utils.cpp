@@ -5,7 +5,7 @@
 
 QString Utils::getVersion(){
 
-    QFileInfo f("./../snap/snapcraft.yaml");
+    QFileInfo f(":/snapcraft/snapcraft");
     QFile file(f.absoluteFilePath());
 
     if(file.open(QIODevice::ReadOnly)){

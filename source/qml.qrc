@@ -18,4 +18,7 @@
         <file alias="en">languages/en.qm</file>
         <file alias="ru">languages/ru.qm</file>
     </qresource>
+    <qresource prefix="/snapcraft">
+        <file alias="snapcraft">../snap/snapcraft.yaml</file>
+    </qresource>
 </RCC>
