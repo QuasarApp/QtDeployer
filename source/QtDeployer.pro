@@ -1,7 +1,7 @@
 TEMPLATE = app
 
 
-lessThan(QT_MINOR_VERSION, 6){
+lessThan(QT_MINOR_VERSION, 8){
     QT += widgets
 }else {
     QT += qml quick
@@ -42,7 +42,8 @@ SOURCES += \
     CPP/outputmanager.cpp \
     CPP/pluginmanager.cpp \
     CPP/qmlmanager.cpp \
-    CPP/buildmanager.cpp
+    CPP/buildmanager.cpp \
+    CPP/utils.cpp
 
 HEADERS += \
     CPP/baseclass.h \
@@ -51,10 +52,11 @@ HEADERS += \
     CPP/outputmanager.h \
     CPP/pluginmanager.h \
     CPP/qmlmanager.h \
-    CPP/buildmanager.h
+    CPP/buildmanager.h \
+    CPP/utils.h
 
 
-lessThan(QT_MINOR_VERSION, 6){
+lessThan(QT_MINOR_VERSION, 8){
 
 SOURCES += \
     mainwindow.cpp \
@@ -77,7 +79,7 @@ TRANSLATIONS += \
     languages/en.ts \
     languages/ru.ts
 
-VERSION = 1.0.0.0
+VERSION = 1.0.3.0
 TEMPLATE = app
 RC_ICONS = snap/icon.ico
 
@@ -88,4 +90,6 @@ FORMS += \
     CPP/about.ui
 
 DISTFILES += \
-    ../snap/snapcraft.yaml
+    ../snap/snapcraft.yaml \
+    ../snap/core18/snapcraft.yaml \
+    ../snap/dumpSnap/snapcraft.yaml

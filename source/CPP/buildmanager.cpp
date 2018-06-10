@@ -115,23 +115,23 @@ bool BuildManager::build(){
     pQMake.setWorkingDirectory(tempBuildFolder);
     pQMake.setArguments(QStringList() <<  m_projectdir);
 
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.insert("LD_LIBRARY_PATH", m_qtdir + "/lib");
+    env.insert("QML_IMPORT_PATH", m_qtdir + "/qml");
+    env.insert("QML2_IMPORT_PATH", m_qtdir + "/qml");
+    env.insert("QT_PLUGIN_PATH", m_qtdir + "/plugins");
+    env.insert("QT_QPA_PLATFORM_PLUGIN_PATH", m_qtdir + "/plugins/platforms");
+
+    pQMake.setProcessEnvironment(env);
+
     pQMake.start();
 
-    if(pQMake.state() == QProcess::NotRunning){
-        emit logChanged(tr("run qmake error!"));
-        return false;
-    }
-
     if(!pQMake.waitForFinished()){
+        emit logChanged(tr("run qmake error!"));
         return false;
     }
 
     pQMake.setProgram("make");
-
-    if(pQMake.state() == QProcess::NotRunning){
-        emit logChanged(tr("run qmake error!"));
-        return false;
-    }
 
     pQMake.setArguments(QStringList() << QString("-j%0").arg(QThread::idealThreadCount()));
     pQMake.start();

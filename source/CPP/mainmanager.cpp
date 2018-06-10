@@ -1,4 +1,5 @@
 #include "mainmanager.h"
+#include "utils.h"
 
 QStringList MainManager::getAllExecutables()
 {
@@ -88,6 +89,10 @@ bool MainManager::pathExists(bool isdir, const QString &path)
 
 const QString& MainManager::outDir() const{
     return m_outputdir;
+}
+
+QString MainManager::appVer() const{
+    return Utils::getVersion();
 }
 
 void MainManager::setState(int state)

@@ -1,6 +1,7 @@
 #include "about.h"
 #include "ui_about.h"
 #include <QPixmap>
+#include "utils.h"
 
 About::About(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,7 @@ About::About(QWidget *parent) :
 
     ui->logo->setText("<img align=middle height=100 width=110 src='://icon' />");
     QString text = QString("<p style='text-align: left;'>&nbsp;</p>"
+                           "<p style='text-align: left;'>Version:" + Utils::getVersion() + "<br />%1 <a href='https://github.com/ShahriarSS/QtLinuxDeployer' target='_blank' rel='noopener'><span style='color: #00ff00;'>QtLinuxDeployer</span></a></p>"
                           "<p style='text-align: left;'>%0<br />%1 <a href='https://github.com/ShahriarSS/QtLinuxDeployer' target='_blank' rel='noopener'><span style='color: #00ff00;'>QtLinuxDeployer</span></a></p>"
                           "<p style='text-align: left;'><br /><span style='color: #00ff00;'>%2</span><br />* %3 <span style='color: #00ff00;'>%4</span>.<br />* %5<span style='color: #00ff00;'> %6</span>.</p>"
                           "<p style='text-align: left;'>%7</p>"

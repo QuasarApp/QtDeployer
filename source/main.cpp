@@ -1,6 +1,6 @@
 #include <QtGlobal>
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
     #include <QGuiApplication>
     #include <QQmlApplicationEngine>
     #include <QQmlContext>
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     QGuiApplication *app;;
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     app = new QGuiApplication(argc, argv);
 #else
     app = new QApplication(argc, argv);
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     MainManager M(&C, &Q, &O, &P, &B);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     QQmlApplicationEngine engine;
 
     auto *R = engine.rootContext();

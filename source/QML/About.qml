@@ -30,6 +30,7 @@ Item {
         text: qsTr("This application forked by ShahriarSS
 Page of original soft: https://github.com/ShahriarSS/QtLinuxDeployer
 
+version: "+MainManager.appVer+"
 
 Developers of fork:
 * Programmer: Yankovich Andrei.
