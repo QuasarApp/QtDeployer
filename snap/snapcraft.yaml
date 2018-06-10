@@ -1,5 +1,5 @@
 name: qt-deployer
-version: '1.0.3.core16.test'
+version: '1.0.3.core16.test2'
 summary: Deploy Qt Project
 description: |
   Deploy Qt Projects. this application extract all depends library of executable and create launch script for your application. |
@@ -26,4 +26,5 @@ parts:
     stage-packages:
       # Here for the plugins-- they're not linked in automatically.
       - libqt5gui5
+      - libc6-dev
     after: [desktop-qt5] # A wiki part
