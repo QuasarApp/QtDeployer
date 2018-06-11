@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>%0</DisplayName>
+    <Description>%1</Description>
+    <Version>%2</Version>
+    <Virtual>false</Virtual>
+    <ReleaseDate>%3</ReleaseDate>
+    <SortingPriority>200</SortingPriority>
+</Package>

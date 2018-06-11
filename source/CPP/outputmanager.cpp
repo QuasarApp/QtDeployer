@@ -31,7 +31,7 @@ bool OutputManager::copyDir(const QString &source, const QString &destin)
 
 void OutputManager::copyCpp(const QStringList &libs)
 {
-	auto libdir = m_outputdir + "/lib";
+    auto libdir = m_outputdir + "/lib/data/lib/";
 
 	for (const QString &S : libs)
 	{
@@ -71,7 +71,7 @@ void OutputManager::copyAll(const QStringList &qtlibs, const QStringList &libs,
 
 void OutputManager::copyQml(const QStringList &dirs)
 {
-	auto qmldir = m_outputdir + "/qml";
+    auto qmldir = m_outputdir + "/qml/data/qml/";
 
 	for (const QString &S : dirs)
 	{
@@ -84,7 +84,7 @@ void OutputManager::copyQml(const QStringList &dirs)
 void OutputManager::copyPlugins(const QStringList &plugins)
 {
 	QString qtpath = m_qtdir + "/plugins/";
-	QString path = m_outputdir + "/plugins/";
+    QString path = m_outputdir + "/plugins/data/plugins";
 
 	for (const QString &plugin : plugins)
 	{
@@ -95,7 +95,7 @@ void OutputManager::copyPlugins(const QStringList &plugins)
 
 void OutputManager::copyExec()
 {
-	auto path = m_outputdir + "/bin/" + QFileInfo(m_executablepath).fileName();
+    auto path = m_outputdir + "/base/data/bin" + QFileInfo(m_executablepath).fileName();
 
 	m_pathsToCopy << path;
 	m_copySuccess << copyFile(m_executablepath, path);
@@ -114,7 +114,7 @@ void OutputManager::createRunFile()
 
 	content = content.arg(QFileInfo(m_executablepath).completeBaseName());
 
-	QString fname = m_outputdir + QDir::separator() +
+    QString fname = m_outputdir + "/base/" + QDir::separator() +
 					QFileInfo(m_executablepath).completeBaseName() + ".sh";
 
 	QFile F(fname);

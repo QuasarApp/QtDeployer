@@ -21,4 +21,11 @@
     <qresource prefix="/snapcraft">
         <file alias="snapcraft">../snap/snapcraft.yaml</file>
     </qresource>
+    <qresource prefix="/install">
+        <file>InstallTemplate/config.xml</file>
+        <file>InstallTemplate/controlScript.js</file>
+        <file>InstallTemplate/installer.pro</file>
+        <file>InstallTemplate/package.xml</file>
+        <file>InstallTemplate/README</file>
+    </qresource>
 </RCC>
