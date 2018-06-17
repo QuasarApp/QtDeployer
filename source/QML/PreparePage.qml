@@ -93,7 +93,7 @@ Page {
 
 			onClicked: {
 				pp.erase = erase.checked
-				swipeview.currentIndex = 2
+                swipeview.currentIndex = 3
 				CppManager.cppLibraries = cpplibs
 			}
 		}

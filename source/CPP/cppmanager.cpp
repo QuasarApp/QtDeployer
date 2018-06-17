@@ -25,7 +25,7 @@ void CppManager::setNotFoundLibs(const QStringList &notFoundLibs)
 }
 
 bool CppManager::isQtLib(const QString &lib) const{
-    return lib.indexOf(m_qtdir) == 0;
+    return lib.indexOf(m_qtdir) == 0 || lib.indexOf("libQt") > -1;
 }
 
 void CppManager::extractAllLibs(const QStringList &execfiles)
@@ -41,7 +41,15 @@ void CppManager::extractAllLibs(const QStringList &execfiles)
 
 QStringList CppManager::extractLibsFromExecutable(const QString &execpath)
 {
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.insert("LD_LIBRARY_PATH", m_qtdir + "/lib");
+    env.insert("QML_IMPORT_PATH", m_qtdir + "/qml");
+    env.insert("QML2_IMPORT_PATH", m_qtdir + "/qml");
+    env.insert("QT_PLUGIN_PATH", m_qtdir + "/plugins");
+    env.insert("QT_QPA_PLATFORM_PLUGIN_PATH", m_qtdir + "/plugins/platforms");
+
 	QProcess P;
+    P.setProcessEnvironment(env);
 	P.start("ldd " + execpath, QProcess::ReadOnly);
 
 	if (!P.waitForStarted()) return QStringList();

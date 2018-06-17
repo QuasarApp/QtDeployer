@@ -94,9 +94,6 @@ int main(int argc, char *argv[])
     mainApp.show();
 #endif
 
-
-    int returnCode = app->exec();
-    delete app;
-    return  returnCode;
+    return app->exec();
 
 }

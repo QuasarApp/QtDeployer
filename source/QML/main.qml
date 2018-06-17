@@ -9,7 +9,8 @@ ApplicationWindow {
     title: qsTr("Qt Deployer")
 
 	width: 600
-	height: sp.implicitHeight + 30
+
+    height: sp.implicitHeight + 300
 
 	property real smallFont: window.font.pointSize
 	property real mediumFont: window.font.pointSize + 2
@@ -28,6 +29,10 @@ ApplicationWindow {
 		StartPage {
 			id: sp
 		}
+
+        BuildPage {
+            id: rb
+        }
 
 		PreparePage {
 			id: prp
