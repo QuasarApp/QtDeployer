@@ -23,8 +23,14 @@ class OutputManager : public BaseClass
 	void copyQml(const QStringList &dirs);
 	void copyPlugins(const QStringList &plugins);
 
+    bool isInstallFW() const;
+
+    void checkInstallFrameWork();
+
 	void createDirectories();
 	void createRunFile();
+    void createInstaller();
+    bool createModule(const QString& from, const QString& to, const QStringList& params);
 	void copyExec();
 
 public:

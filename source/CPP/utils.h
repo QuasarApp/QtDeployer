@@ -8,7 +8,8 @@ private:
     Utils() = delete;
 public:
     static QString getVersion();
-
+    static QString getDescription();
+    static QString getPublicher();
 };
 
 #endif // UTILS_H
