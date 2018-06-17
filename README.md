@@ -8,6 +8,9 @@
 ## What is Qt Deployer
 The Qt Deployer is gui application for extract all depends library of executable and create launch script for your application.
 
+### How to use
+[![Example Deploy](https://img.youtube.com/vi/TaEdTTiRW7g/2.jpg)](https://youtu.be/TaEdTTiRW7g)
+
 ### supported platform: 
 1. Linux
 
