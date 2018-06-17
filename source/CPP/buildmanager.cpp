@@ -111,14 +111,6 @@ bool BuildManager::build(){
         return false;
     }
 
-    QProcess P;
-    P.start("ldd " + qmake, QProcess::ReadOnly);
-    P.waitForFinished();
-
-
-    tempLog = P.readAll();
-    emit logChanged(tempLog);
-
     pQMake.setProgram(qmake);
     pQMake.setWorkingDirectory(tempBuildFolder);
     pQMake.setArguments(QStringList() <<  m_projectdir);

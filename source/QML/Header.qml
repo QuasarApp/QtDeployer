@@ -21,7 +21,7 @@ TopBar {
             font.pointSize: smallFont
             anchors.right: home.left
             onClicked: {
-                swipeview.currentIndex = 4
+                swipeview.currentIndex = 5
             }
             anchors.verticalCenter: parent.verticalCenter
         }

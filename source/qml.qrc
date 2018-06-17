@@ -13,6 +13,7 @@
         <file>QML/Header.qml</file>
         <file>QML/About.qml</file>
         <file>QML/Theme.js</file>
+        <file>QML/BuildPage.qml</file>
     </qresource>
     <qresource prefix="/languages">
         <file alias="en">languages/en.qm</file>

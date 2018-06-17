@@ -25,7 +25,7 @@ Page {
 			if (page.state == 0)
 				MainManager.start(erase)
 			else if (page.state == 2)
-				swipeview.currentIndex = 3
+                swipeview.currentIndex = 4
 		}
 	}
 }
