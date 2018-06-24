@@ -8,6 +8,5 @@
     <TargetDir>@HomeDir@/%0</TargetDir>
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
     <MaintenanceToolName>%0Uninstall</MaintenanceToolName>
-    <ControlScript>controlScript.js</ControlScript>
     <RemoveTargetDir>true</RemoveTargetDir>
 </Installer>

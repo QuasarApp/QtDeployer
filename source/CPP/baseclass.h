@@ -21,6 +21,7 @@ protected:
 	static QString m_projectdir;
 	static QString m_executablepath;
     static QString projectName;
+    static QString appIcon;
 
 	QStringList findFilesInsideDir(const QString &name, const QString &dirpath);
 

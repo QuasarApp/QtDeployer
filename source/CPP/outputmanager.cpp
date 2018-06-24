@@ -2,6 +2,12 @@
 #include "utils.h"
 #include <QDate>
 
+OutputManager::OutputManager(QObject *parent) : BaseClass(parent) {/*finished*/
+    connect(&installer_process, &QProcess::readyReadStandardOutput, this, &OutputManager::buildLog);
+//    connect(&installer_process, &QProcess::finished, this, &OutputManager::buildFunished);
+    connect(&installer_process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(buildFunished(int, QProcess::ExitStatus)));
+}
+
 void OutputManager::setPathsToCopy(const QStringList &pathsToCopy)
 {
 	if (m_pathsToCopy == pathsToCopy) return;
@@ -16,6 +22,21 @@ void OutputManager::setCopySuccess(const QList<bool> &copySuccess)
 
 	m_copySuccess = copySuccess;
 	emit copySuccessChanged(m_copySuccess);
+}
+
+const QString& OutputManager::log() const{
+    return tempLog;
+}
+
+void OutputManager::buildLog(){
+    tempLog = installer_process.readAll();
+    emit logChanged(tempLog);
+}
+
+void OutputManager::buildFunished(int error, QProcess::ExitStatus){
+    if(!error){
+        emit finished();
+    }
 }
 
 bool OutputManager::copyDir(const QString &source, const QString &destin)
@@ -33,6 +54,7 @@ bool OutputManager::copyDir(const QString &source, const QString &destin)
 
 void OutputManager::copyCpp(const QStringList &libs)
 {   
+
     QString temp = "/lib";
     if(isInstallFW()){
         temp = "/packages/lib/data/lib";
@@ -55,8 +77,15 @@ void OutputManager::copyAll(const QStringList &qtlibs, const QStringList &libs,
 	m_pathsToCopy.clear();
 	m_copySuccess.clear();
 
+    tempLog = tr("Start preparing project");
+    emit logChanged(tempLog);
+
 	if (erase)
 	{
+
+        tempLog = tr("Start erase output dir");
+        emit logChanged(tempLog);
+
 		QDir(m_outputdir).removeRecursively();
 		QDir dir(m_outputdir);
 		dir.cdUp();
@@ -67,13 +96,31 @@ void OutputManager::copyAll(const QStringList &qtlibs, const QStringList &libs,
 
 	createDirectories();
 
-	if (libs.count() != 0) copyCpp(libs);
+    if (libs.count() != 0){
+        tempLog = tr("Copy c++ libs");
+        emit logChanged(tempLog);
+        copyCpp(libs);
+    }
+    tempLog = tr("Copy c++/qt libs");
+    emit logChanged(tempLog);
 	copyCpp(qtlibs);
+
+    tempLog = tr("Copy qml libs");
+    emit logChanged(tempLog);
 	copyQml(dirs);
+
+    tempLog = tr("Copy Plugins");
+    emit logChanged(tempLog);
 	copyPlugins(plugins);
+
+    tempLog = tr("Copy Execute files");
+    emit logChanged(tempLog);
 	copyExec();
+
 	createRunFile();
-    createInstaller();
+
+    if(isInstallFW())
+        createInstaller();
 
 	emit pathsToCopyChanged(m_pathsToCopy);
 	emit copySuccessChanged(m_copySuccess);
@@ -102,6 +149,10 @@ bool OutputManager::isInstallFW() const {
 }
 
 void OutputManager::checkInstallFrameWork(){
+
+    tempLog = tr("check InstallFrameWork");
+    emit logChanged(tempLog);
+
     QDir dir(m_qtdir);
     if(!dir.cd("../../Tools/QtInstallerFramework")){
         m_binarycreator = QString();
@@ -134,8 +185,14 @@ void OutputManager::checkInstallFrameWork(){
 
     if(!QFile::exists(m_binarycreator)){
         m_binarycreator = QString();
+        tempLog = tr("InstallFrameWork not findet");
+        emit logChanged(tempLog);
+
         return;
     }
+
+    tempLog = tr("InstallFrameWork findet in %0").arg(m_binarycreator);
+    emit logChanged(tempLog);
 
 }
 
@@ -167,6 +224,57 @@ void OutputManager::copyExec()
 
 	m_pathsToCopy << path;
 	m_copySuccess << copyFile(m_executablepath, path);
+}
+
+bool OutputManager::createIcon(){
+    QFile f(appIcon);
+    QByteArray icon;
+
+    if(!f.open(QIODevice::ReadOnly)){
+        return false;
+    }
+    icon = f.readAll();
+    f.close();
+
+    QString name = QFileInfo(appIcon).fileName();
+    f.setFileName(m_outputdir + "/packages/base/data/" + name);
+
+    if(!f.open(QIODevice::WriteOnly)){
+        return false;
+    }
+    f.write(icon.data(), icon.size());
+
+    f.close();
+
+    appIcon = name;
+
+    return true;
+}
+
+void OutputManager::createEntryScript(){
+    QString temp = "";
+    if(isInstallFW()){
+        temp = "/packages/base/data";
+    }
+
+    QFile f(":/install/InstallTemplate/CreateDesktopEntry.sh");
+    f.open(QIODevice::ReadOnly);
+
+    QString content = f.readAll();
+
+    QString fname = m_outputdir + temp + QDir::separator() +
+                    "CreateDesktopEntry.sh";
+
+    QFile F(fname);
+    m_pathsToCopy << fname;
+    m_copySuccess << F.open(QIODevice::WriteOnly);
+
+    F.write(content.toUtf8());
+    F.flush();
+    F.close();
+
+    F.setPermissions(QFileDevice::ExeUser | QFileDevice::WriteUser |
+                     QFileDevice::ReadUser);
 }
 
 void OutputManager::createRunFile()
@@ -201,6 +309,7 @@ void OutputManager::createRunFile()
 
 	F.setPermissions(QFileDevice::ExeUser | QFileDevice::WriteUser |
 					 QFileDevice::ReadUser);
+
 }
 
 bool OutputManager::createModule(const QString &from, const QString &to, const QStringList &params){
@@ -234,6 +343,9 @@ bool OutputManager::createModule(const QString &from, const QString &to, const Q
 
 void OutputManager::createInstaller(){
 
+    tempLog = tr("create installer");
+    emit logChanged(tempLog);
+
     createModule(":/install/InstallTemplate/config.xml",
                  m_outputdir + "/config/config.xml",
                  QStringList() << projectName <<
@@ -242,56 +354,71 @@ void OutputManager::createInstaller(){
                  "QtDeployer" <<
                  QDate::currentDate().toString("yyyy-MM-dd"));
 
-    createModule(":/install/InstallTemplate/controlScript.js",
-                 m_outputdir + "/config/controlScript.js",
-                 QStringList());
 
+    bool icon = createIcon();
     createModule(":/install/InstallTemplate/package.xml",
                  m_outputdir + "/packages/base/meta/package.xml",
                  QStringList() << "base" <<
                  "base data of " + projectName  <<
                  Utils::getVersion() <<
-                 QDate::currentDate().toString("yyyy-MM-dd"));
+                 QDate::currentDate().toString("yyyy-MM-dd") <<
+                 "true" <<
+                 ((icon)?"<Script>controlScript.js</Script>":""));
+
+    if(icon){
+        createModule(":/install/InstallTemplate/controlScript.js",
+                     m_outputdir + "/packages/base/meta/controlScript.js",
+                     QStringList() << appIcon);
+        createEntryScript();
+    }
+
 
     createModule(":/install/InstallTemplate/package.xml",
                  m_outputdir + "/packages/qml/meta/package.xml",
                  QStringList() << "qml" <<
                  "qml data of "  + projectName  <<
                  Utils::getVersion() <<
-                 QDate::currentDate().toString("yyyy-MM-dd"));
+                 QDate::currentDate().toString("yyyy-MM-dd") <<
+                 "true" <<
+                 "");
 
     createModule(":/install/InstallTemplate/package.xml",
                  m_outputdir + "/packages/lib/meta/package.xml",
                  QStringList() << "lib" <<
                  "lib data of " + projectName  <<
                  Utils::getVersion() <<
-                 QDate::currentDate().toString("yyyy-MM-dd"));
+                 QDate::currentDate().toString("yyyy-MM-dd") <<
+                 "true" <<
+                 "");
 
     createModule(":/install/InstallTemplate/package.xml",
                  m_outputdir + "/packages/plugins/meta/package.xml",
                  QStringList() << "plugins" <<
                  "plugins data of " + projectName  <<
                  Utils::getVersion() <<
-                 QDate::currentDate().toString("yyyy-MM-dd"));
+                 QDate::currentDate().toString("yyyy-MM-dd") <<
+                 "true" <<
+                 "");
 
-    QProcess binaryCreator;
-    binaryCreator.setProgram(m_binarycreator);
+    installer_process.setProgram(m_binarycreator);
     /*
 -c $$PWD/config/config.xml -p $$PWD/packages ${QMAKE_FILE_OUT}*/
-    binaryCreator.setArguments(QStringList() << "-c" <<
+    installer_process.setArguments(QStringList() << "-c" <<
                                m_outputdir + "/config/config.xml" <<
                                "-p" <<
                                m_outputdir + "/packages" <<
-                               m_outputdir + "/installer_" + projectName);
+                               m_outputdir + "/installer_" + projectName <<
+                               "-v");
 
-    binaryCreator.start();
-
-    binaryCreator.waitForFinished(2 * 60 * 1000);
+    installer_process.start();
 
 }
 
 void OutputManager::createDirectories()
 {
+
+    tempLog = tr("Create Directories");
+    emit logChanged(tempLog);
 
     if(isInstallFW()){
         m_pathsToCopy << m_outputdir + "/config";
@@ -329,6 +456,5 @@ bool OutputManager::copyFile(const QString &source, const QString &destin)
 	return QFile::copy(source, destin);
 }
 
-OutputManager::OutputManager(QObject *parent) : BaseClass(parent) {}
 QStringList OutputManager::pathsToCopy() const { return m_pathsToCopy; }
 QList<bool> OutputManager::copySuccess() const { return m_copySuccess; }

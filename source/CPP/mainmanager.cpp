@@ -1,5 +1,7 @@
 #include "mainmanager.h"
 #include "utils.h"
+#include <QThread>
+#include <QSettings>
 
 QStringList MainManager::getAllExecutables()
 {
@@ -41,7 +43,7 @@ CppManager* MainManager::getCpp(){
     return m_cpp;
 }
 
-void MainManager::prepare(const QString &qtdir, const QString &projectdir)
+void MainManager::prepare(const QString &qtdir, const QString &projectdir, const QString& icon)
 {
 	QStringList list;
     list << qtdir  << projectdir ;
@@ -52,7 +54,21 @@ void MainManager::prepare(const QString &qtdir, const QString &projectdir)
 	m_qtdir = list[0];
     m_projectdir = list[1];
 
+    if(QFileInfo(icon).exists()){
+        appIcon = icon;
+    } else {
+        appIcon = ":/install/res/icon.png";
+    }
+
+    QSettings s;
+    s.setValue("qtDir", m_qtdir);
+
     m_bld->build();
+}
+
+QString MainManager::qtDir() const {
+    QSettings s;
+    return s.value("qtDir", "").toString();
 }
 
 void MainManager::deploy(const QStringList& list){

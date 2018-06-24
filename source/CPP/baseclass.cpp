@@ -7,6 +7,7 @@ QString BaseClass::m_projectdir = QString();
 QString BaseClass::m_executablepath = QString();
 QString BaseClass::m_binarycreator = QString();
 QString BaseClass::projectName = QString();
+QString BaseClass::appIcon = QString();
 
 QStringList BaseClass::findFilesInsideDir(const QString &name, const QString &dirpath)
 {
