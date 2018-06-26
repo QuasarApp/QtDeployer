@@ -246,6 +246,14 @@ bool OutputManager::createIcon(){
 
     f.close();
 
+    f.setFileName(m_outputdir + "/config/" + name);
+    if(!f.open(QIODevice::WriteOnly)){
+        return false;
+    }
+    f.write(icon.data(), icon.size());
+
+    f.close();
+
     appIcon = name;
 
     return true;
@@ -346,16 +354,27 @@ void OutputManager::createInstaller(){
     tempLog = tr("create installer");
     emit logChanged(tempLog);
 
+    if(!createIcon()){
+        tempLog = tr("create icon fail!");
+        emit logChanged(tempLog);
+        return;
+    }
+
     createModule(":/install/InstallTemplate/config.xml",
                  m_outputdir + "/config/config.xml",
                  QStringList() << projectName <<
                  Utils::getVersion() <<
                  Utils::getPublicher() <<
                  "QtDeployer" <<
-                 QDate::currentDate().toString("yyyy-MM-dd"));
+                 QDate::currentDate().toString("yyyy-MM-dd") <<
+                 appIcon);
 
 
-    bool icon = createIcon();
+    createModule(":/install/InstallTemplate/controlScript.js",
+                 m_outputdir + "/config/controlScript.js",
+                 QStringList() << appIcon);
+
+
     createModule(":/install/InstallTemplate/package.xml",
                  m_outputdir + "/packages/base/meta/package.xml",
                  QStringList() << "base" <<
@@ -363,14 +382,7 @@ void OutputManager::createInstaller(){
                  Utils::getVersion() <<
                  QDate::currentDate().toString("yyyy-MM-dd") <<
                  "true" <<
-                 ((icon)?"<Script>controlScript.js</Script>":""));
-
-    if(icon){
-        createModule(":/install/InstallTemplate/controlScript.js",
-                     m_outputdir + "/packages/base/meta/controlScript.js",
-                     QStringList() << appIcon);
-        createEntryScript();
-    }
+                 "");
 
 
     createModule(":/install/InstallTemplate/package.xml",

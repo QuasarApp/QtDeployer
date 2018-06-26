@@ -1,41 +1,40 @@
-function Component(){}
-
-Component.prototype.isDefault = function() {
-    return true;
+function Controller()
+{
+    installer.uninstallationFinished.connect(this, Controller.prototype.uninstallationFinished);
+    installer.installationFinished.connect(this, Controller.prototype.installationFinished);
 }
 
-Component.prototype.createOperations = function() {
-    console.log("create icons");
+Controller.prototype.installationFinished = function()
+{
 
-    try {
-        component.createOperations();
-    } catch (e) {
-        print(e);
-    }
-
-    var name = installer.value("AppName");
-
-    if (systemInfo.kernelType === "winnt" ) {
-        console.log("create icons winnt");
-
+    if (systemInfo.kernelType === "winnt") {
         component.addOperation("CreateShortcut",
-                               "@TargetDir@/" + name + ".exe",
-                               "@DesktopDir@/" + name + ".lnk");
+                               "@TargetDir@/@Name@.exe",
+                               "@DesktopDir@/@Name@.lnk");
     }
 
-    if (systemInfo.kernelType === "linux")
-    {
-        console.log("create icons linux");
+    if (systemInfo.kernelType === "linux") {
+        component.addOperation("CreateDesktopEntry",
+                               "@HomeDir@/.local/share/applications/@Name@.desktop",
+                               "Version=@Version@\n
+                                Type=Application\n
+                                Terminal=false\n
+                                Exec=@TargetDir@/@Name@.sh\n
+                                Name=@Name@\n
+                                Icon=@TargetDir@/bin/%0\n
+                                Name[en_US]=YourApp_name");
 
-
-        var targetDir = installer.value("TargetDir");
-        var version = installer.value("Version");
-        var homeDir = installer.value("HomeDir");
-        var desktopFileTarget = installer.value("HomeDir") + "/.local/share/applications";
-        var iconName = "%0";
-
-        var res = installer.execute(targetDir + "/CreateDesktopEntry.sh", ["install", targetDir, name, version, iconName]);
-
-        console.log(res);
+        component.addElevatedOperation("Copy",
+                                       "@HomeDir@/.local/share/applications/@Name@.desktop",
+                                       "@HomeDir@/Desktop/@Name@.desktop");
     }
 }
+
+
+Controller.prototype.uninstallationFinished = function()
+{
+
+}
+
+
+

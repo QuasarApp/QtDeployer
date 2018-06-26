@@ -9,4 +9,6 @@
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
     <MaintenanceToolName>%0Uninstall</MaintenanceToolName>
     <RemoveTargetDir>true</RemoveTargetDir>
+    <ControlScript>controlScript.js</ControlScript>
+    <Logo>%5</Logo>
 </Installer>
