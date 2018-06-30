@@ -21,13 +21,7 @@ Controller.prototype.installationFinished = function()
 
         installer.performOperation("CreateDesktopEntry",
                                "@HomeDir@/.local/share/applications/@Name@.desktop",
-                               "Version=@Version@\n
-                                Type=Application\n
-                                Terminal=false\n
-                                Exec=@TargetDir@/@Name@.sh\n
-                                Name=@Name@\n
-                                Icon=@TargetDir@/bin/%0\n
-                                Name[en_US]=YourApp_name");
+                               "Version=@Version@\nType=Application\nTerminal=false\nExec=@TargetDir@/@Name@.sh\nName=@Name@\nIcon=@TargetDir@/bin/%0\nName[en_US]=YourApp_name");
 
 //        installer.addElevatedOperation("Copy",
 //                                       "@HomeDir@/.local/share/applications/@Name@.desktop",

@@ -293,14 +293,15 @@ void OutputManager::createRunFile()
         temp = "/packages/base/data";
     }
 
-	QString content =
-		"#!/bin/sh\n"
-		"export LD_LIBRARY_PATH=`pwd`/lib\n"
-		"export QML_IMPORT_PATH=`pwd`/qml\n"
-		"export QML2_IMPORT_PATH=`pwd`/qml\n"
-		"export QT_PLUGIN_PATH=`pwd`/plugins\n"
-		"export QT_QPA_PLATFORM_PLUGIN_PATH=`pwd`/plugins/platforms\n"
-		"./bin/%1";
+    QString content =
+        "#!/bin/sh\n"
+        "BASEDIR=$(dirname $0)\n"
+        "export LD_LIBRARY_PATH=\"$BASEDIR/lib\"\n"
+        "export QML_IMPORT_PATH=\"$BASEDIR/qml\"\n"
+        "export QML2_IMPORT_PATH=\"$BASEDIR/qml\"\n"
+        "export QT_PLUGIN_PATH=\"$BASEDIR/plugins\"\n"
+        "export QT_QPA_PLATFORM_PLUGIN_PATH=\"$BASEDIR/plugins/platforms\"\n"
+        "$BASEDIR/bin/%1";
 
 	content = content.arg(QFileInfo(m_executablepath).completeBaseName());
 
@@ -382,7 +383,11 @@ void OutputManager::createInstaller(){
                  Utils::getVersion() <<
                  QDate::currentDate().toString("yyyy-MM-dd") <<
                  "true" <<
-                 "");
+                 "<Script>componentScript.js</Script>");
+
+    createModule(":/install/InstallTemplate/componentScript.js",
+                 m_outputdir + "/packages/base/meta/componentScript.js",
+                 QStringList() << appIcon);
 
 
     createModule(":/install/InstallTemplate/package.xml",

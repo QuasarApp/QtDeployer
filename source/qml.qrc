@@ -29,5 +29,6 @@
         <file>InstallTemplate/README</file>
         <file>InstallTemplate/CreateDesktopEntry.sh</file>
         <file>res/iconInstaller.png</file>
+        <file>InstallTemplate/componentScript.js</file>
     </qresource>
 </RCC>
