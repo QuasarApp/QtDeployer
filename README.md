@@ -25,6 +25,12 @@ The Qt Deployer is gui application for extract all depends library of executable
 ## Install 
 You can download the latest version of the application [here](https://github.com/QuasarApp/QtDeployer/releases).
 
+This application generates an installation file with all the dependencies "qt".
+The application consists of the following steps:
+1. configuring the qt location paths and the project itself
+2. project assembly with the selected qt
+3. selection of the necessary not "qt" dependencies
+4. Interpolator creation using "qt Install framework" (available only from version 1.1)
 
 ## Donate
 If you want to help the project, then you can donate a small amount to our bitcoin wallet.
@@ -37,6 +43,13 @@ If you want to help the project, then you can donate a small amount to our bitco
 
 ## Что такое Qt Deployer
 Qt Deployer это GUI-приложением для извлечения всех зависимых библиотек исполняемого файла и создает сценарий запуска для вашего приложения.
+
+Данное приложение генерирует установочный файл со всеми зависимостями "qt".
+Работа приложения состоит из следующих этапов:
+1. настройка путей расположения qt и самого проекта
+2. сборка проекта с выбранным qt 
+3. выбор необходимых не "qt" зависимостей 
+4. Создания интерполятора с использованием "qt Install framework" (доступно только начиная с версии 1.1)
 
 ### поддерживаемая платформа:
 1. Linux
