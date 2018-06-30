@@ -57,7 +57,7 @@ void MainManager::prepare(const QString &qtdir, const QString &projectdir, const
     if(QFileInfo(icon).exists()){
         appIcon = icon;
     } else {
-        appIcon = ":/install/res/icon.png";
+        appIcon = ":/install/res/iconInstaller.png";
     }
 
     QSettings s;

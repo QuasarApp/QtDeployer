@@ -28,6 +28,6 @@
         <file>InstallTemplate/package.xml</file>
         <file>InstallTemplate/README</file>
         <file>InstallTemplate/CreateDesktopEntry.sh</file>
-        <file>res/icon.png</file>
+        <file>res/iconInstaller.png</file>
     </qresource>
 </RCC>

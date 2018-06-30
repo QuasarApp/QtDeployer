@@ -13,8 +13,13 @@ Controller.prototype.installationFinished = function()
                                "@DesktopDir@/@Name@.lnk");
     }
 
+    console.log("create icons!!!");
+
     if (systemInfo.kernelType === "linux") {
-        component.addOperation("CreateDesktopEntry",
+
+        console.log("create icons!!! on LINUX");
+
+        installer.performOperation("CreateDesktopEntry",
                                "@HomeDir@/.local/share/applications/@Name@.desktop",
                                "Version=@Version@\n
                                 Type=Application\n
@@ -24,9 +29,12 @@ Controller.prototype.installationFinished = function()
                                 Icon=@TargetDir@/bin/%0\n
                                 Name[en_US]=YourApp_name");
 
-        component.addElevatedOperation("Copy",
-                                       "@HomeDir@/.local/share/applications/@Name@.desktop",
-                                       "@HomeDir@/Desktop/@Name@.desktop");
+//        installer.addElevatedOperation("Copy",
+//                                       "@HomeDir@/.local/share/applications/@Name@.desktop",
+//                                       "@HomeDir@/Desktop/@Name@.desktop");
+
+        console.log("create icons!!! on LINUX done");
+
     }
 }
 
