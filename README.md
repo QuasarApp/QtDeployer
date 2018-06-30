@@ -19,14 +19,11 @@ The Qt Deployer is gui application for extract all depends library of executable
   -  sudo apt install git snapcraft 
   -  git clone https://github.com/QuasarApp/QtDeployer.git
   -  cd QtDeployer
-  -  snapcraft
+  -  qmake & make
 
 
 ## Install 
 You can download the latest version of the application [here](https://github.com/QuasarApp/QtDeployer/releases).
-
-Or download from official services
-  * [Ubuntu](https://snapcraft.io/qt-deployer)
 
 
 ## Donate
@@ -49,14 +46,11 @@ Qt Deployer это GUI-приложением для извлечения все
    - sudo apt install git snapcraft
    - git clone https://github.com/QuasarApp/QtDeployer.git
    - cd QtDeployer
-   - оснащение
+  -  qmake & make
 
 
 ## Установить
 Вы можете загрузить последнюю версию приложения [здесь](https://github.com/QuasarApp/QtDeployer/releases).
-
-Или скачать из официальной странички в ubuntu store 
-  * [Ubuntu](https://snapcraft.io/qt-deployer)
 
 
 ## Пожертвовать
