@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>%0</DisplayName>
+    <Description>%1</Description>
+    <Version>%2</Version>
+    <ReleaseDate>%3</ReleaseDate>
+    <SortingPriority>200</SortingPriority>
+    <Default>%4</Default>
+    %5
+</Package>

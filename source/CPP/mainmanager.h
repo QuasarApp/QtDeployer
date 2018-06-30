@@ -7,6 +7,7 @@
 #include "pluginmanager.h"
 #include "qmlmanager.h"
 #include "buildmanager.h"
+#include <QThread>
 
 class MainManager : public BaseClass
 {
@@ -22,7 +23,6 @@ class MainManager : public BaseClass
 	PluginManager *m_plg;
 	OutputManager *m_out;
     BuildManager *m_bld;
-
 
 	int m_state;
 
@@ -41,7 +41,9 @@ public:
     CppManager* getCpp();
 
 public slots:
-    void prepare(const QString &qtdir, const QString &projectdir);
+    void prepare(const QString &qtdir, const QString &projectdir, const QString &icon);
+
+    QString qtDir() const;
 
     void deploy(const QStringList& list);
 	void start(bool erase);

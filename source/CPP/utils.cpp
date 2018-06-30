@@ -33,3 +33,13 @@ QString Utils::getVersion(){
 
     return  file.errorString();
 }
+
+/** @todo add get description method */
+QString Utils::getDescription(){
+    return "";
+}
+
+/** @todo add get Publicher method */
+QString Utils::getPublicher(){
+    return "QtDeployer";
+}

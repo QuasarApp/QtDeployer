@@ -17,8 +17,11 @@ class BaseClass : public QObject
 protected:
 	static QString m_qtdir;
 	static QString m_outputdir;
+    static QString m_binarycreator;
 	static QString m_projectdir;
 	static QString m_executablepath;
+    static QString projectName;
+    static QString appIcon;
 
 	QStringList findFilesInsideDir(const QString &name, const QString &dirpath);
 

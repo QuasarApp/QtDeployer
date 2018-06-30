@@ -91,9 +91,6 @@ void CppManager::divideLibraries()
 
 void CppManager::start(const QStringList &executables)
 {
-	m_qtLibraries.clear();
-	m_cppLibraries.clear();
-	m_notFoundLibs.clear();
 
 	extractAllLibs(executables);
 	divideLibraries();

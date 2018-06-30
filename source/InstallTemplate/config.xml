@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>%0</Name>
+    <Version>%1</Version>
+    <Title>%2</Title>
+    <Publisher>%3</Publisher>
+    <StartMenuDir>%4</StartMenuDir>
+    <TargetDir>@HomeDir@/%0</TargetDir>
+    <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
+    <MaintenanceToolName>%0Uninstall</MaintenanceToolName>
+    <RemoveTargetDir>true</RemoveTargetDir>
+    <ControlScript>controlScript.js</ControlScript>
+    <Logo>%5</Logo>
+</Installer>

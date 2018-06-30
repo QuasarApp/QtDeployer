@@ -7,25 +7,53 @@ Page {
 	id: page
 	clip: true
 
-	property bool erase
-	property int state: MainManager.state
-
     header: Header {
         message: qsTr("Qt Deployer")
     }
 
-	Button {
-		width: 200
-		padding: 18
-		anchors.centerIn: parent
-		Material.background: buttonColor
-        text: page.state == 0 ? "Go!":(page.state == 1 ? qsTr("Wait!"):qsTr("Done!"))
+    property string outdir
+    property var cpplibs: []
 
-		onClicked: {
-			if (page.state == 0)
-				MainManager.start(erase)
-			else if (page.state == 2)
-                swipeview.currentIndex = 4
-		}
-	}
+    Flickable {
+         id: flick
+
+         Connections {
+             target: OutputManager
+             onLogChanged:{
+                 log.append(OutputManager.log)
+             }
+         }
+
+         Connections {
+             target: OutputManager
+             onFinished:{
+                 swipeview.currentIndex = 4
+             }
+         }
+
+         anchors.fill: parent
+         contentWidth: log.paintedWidth
+         contentHeight: log.paintedHeight
+         clip: true
+
+         function ensureVisible(r)
+         {
+             if (contentX >= r.x)
+                 contentX = r.x;
+             else if (contentX+width <= r.x+r.width)
+                 contentX = r.x+r.width-width;
+             if (contentY >= r.y)
+                 contentY = r.y;
+             else if (contentY+height <= r.y+r.height)
+                 contentY = r.y+r.height-height;
+         }
+
+         TextEdit {
+             id: log
+             width: flick.width
+             focus: true
+             wrapMode: TextEdit.Wrap
+             onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+         }
+     }
 }

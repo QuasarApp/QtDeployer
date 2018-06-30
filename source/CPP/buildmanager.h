@@ -12,7 +12,6 @@ private:
     QString qmake;
     QString tempBuildFolder;
     QString tempLog;
-    QString projectName;
     QProcess pQMake;
 
     bool createFulder(QDir& dir, QString& path, const QString& name) const;

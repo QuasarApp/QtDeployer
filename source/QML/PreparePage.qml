@@ -92,9 +92,10 @@ Page {
 			Layout.alignment: Qt.AlignRight
 
 			onClicked: {
-				pp.erase = erase.checked
                 swipeview.currentIndex = 3
 				CppManager.cppLibraries = cpplibs
+                MainManager.start(erase.checked)
+
 			}
 		}
 	}

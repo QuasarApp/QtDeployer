@@ -40,7 +40,7 @@ bool initLocale(const QString &locale, QGuiApplication& app, QTranslator &transl
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication *app;;
+    QGuiApplication *app;
 
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
@@ -50,6 +50,9 @@ int main(int argc, char *argv[])
 
 #endif
 
+    QCoreApplication::setOrganizationName("QuasarApp");
+    QCoreApplication::setOrganizationDomain("https://quasarapp.github.io/QtDeployer/");
+    QCoreApplication::setApplicationName("Qt-Deployer");
 
     app->setWindowIcon(QIcon("://icon"));
 

@@ -21,12 +21,19 @@ Page {
 		PathChooser {
 			id: qtdir
             title: qsTr("Qt Build Directory")
+            content: MainManager.qtDir();
 		}
 
 		PathChooser {
 			id: projectdir
             title: qsTr("Project Directory")
 		}
+
+        PathChooser {
+            id: icon
+            title: qsTr("Project icon")
+            isdir: false
+        }
 
 		Item {
 			Layout.fillWidth: true
@@ -40,7 +47,7 @@ Page {
             enabled: qtdir.confirmed && projectdir.confirmed
 
 			onClicked: {
-                MainManager.prepare(qtdir.content, projectdir.content)
+                MainManager.prepare(qtdir.content, projectdir.content, icon.content)
 
                 prp.outdir = MainManager.outDir
 				swipeview.currentIndex = 1
