@@ -15,18 +15,17 @@ The application consists of the following steps:
 3. selection of the necessary not "qt" dependencies
 4. Interpolator creation using "qt Install framework" (available only from version 1.1)
 
+## Attention
+##### This project is designed to build projects consisting of only one pro file, if you need to collect a large project, then you need to use our [template] (https://github.com/QuasarApp/QtDeployTemplate) to build and deploy qt applications
+
 ### How to use
 [![Example Deploy](https://img.youtube.com/vi/TaEdTTiRW7g/2.jpg)](https://youtu.be/TaEdTTiRW7g)
 
 ### supported platform: 
 1. Linux
 
-## Build for Linux (snap)
-
-  -  sudo apt install git snapcraft 
-  -  git clone https://github.com/QuasarApp/QtDeployer.git
-  -  cd QtDeployer
-  -  qmake & make
+## Build for Linux 
+  -  qmake & make or install qt creator and build on qtcreator
 
 
 ## Install 
@@ -51,15 +50,14 @@ Qt Deployer это GUI-приложением для извлечения все
 3. выбор необходимых не "qt" зависимостей 
 4. Создания интерполятора с использованием "qt Install framework" (доступно только начиная с версии 1.1)
 
+## Внимание
+##### Данный проект преднозначен для сборки проектов состоящих всего из одного pro файла, если вам необходимо собрать крупный проект то вам нужно аоспользоватся нашим [шаблоном](https://github.com/QuasarApp/QtDeployTemplate) для сборки и развертывания qt приложений 
+
 ### поддерживаемая платформа:
 1. Linux
 
 ## Build для Linux (snap)
-
-   - sudo apt install git snapcraft
-   - git clone https://github.com/QuasarApp/QtDeployer.git
-   - cd QtDeployer
-  -  qmake & make
+  -  qmake & make или установите qtcreator и соберите проект с qt5.9 или выше.
 
 
 ## Установить
