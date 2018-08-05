@@ -16,7 +16,7 @@ The application consists of the following steps:
 4. Interpolator creation using "qt Install framework" (available only from version 1.1)
 
 ## Attention
-##### This project is designed to build projects consisting of only one pro file, if you need to collect a large project, then you need to use our [template] (https://github.com/QuasarApp/QtDeployTemplate) to build and deploy qt applications
+##### This project is designed to build projects consisting of only one pro file, if you need to collect a large project, then you need to use our [template](https://github.com/QuasarApp/QtDeployTemplate) to build and deploy qt applications
 
 ### How to use
 [![Example Deploy](https://img.youtube.com/vi/TaEdTTiRW7g/2.jpg)](https://youtu.be/TaEdTTiRW7g)
