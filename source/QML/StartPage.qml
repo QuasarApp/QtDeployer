@@ -25,8 +25,10 @@ Page {
 		}
 
 		PathChooser {
-			id: projectdir
-            title: qsTr("Project Directory")
+            id: projectfile
+            title: qsTr("Project File")
+            isdir: false
+
 		}
 
         PathChooser {
@@ -44,10 +46,10 @@ Page {
             text: qsTr("Next")
 			Material.background: buttonColor
 			Layout.alignment: Qt.AlignRight
-            enabled: qtdir.confirmed && projectdir.confirmed
+            enabled: qtdir.confirmed && projectfile.confirmed
 
 			onClicked: {
-                MainManager.prepare(qtdir.content, projectdir.content, icon.content)
+                MainManager.prepare(qtdir.content, projectfile.content, icon.content)
 
                 prp.outdir = MainManager.outDir
 				swipeview.currentIndex = 1

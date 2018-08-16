@@ -52,7 +52,7 @@ void MainManager::prepare(const QString &qtdir, const QString &projectdir, const
         if (S[S.count() - 1] == '/') S.remove(S.count() - 1, 1);
 
 	m_qtdir = list[0];
-    m_projectdir = list[1];
+    m_projectfile = list[1];
 
     if(QFileInfo(icon).exists()){
         appIcon = icon;

@@ -119,7 +119,7 @@ void QmlManager::start()
 	m_foundImports.clear();
 	m_notFoundImports.clear();
 
-	extractImportsFromDir(m_projectdir);
+    extractImportsFromDir(QFileInfo(m_projectfile).absoluteDir().path());
 	removeInnerImports();
 	divideFoundAndNotFound();
 

@@ -56,17 +56,14 @@ bool BuildManager::createFulder(QDir& dir, QString &path, const QString &name) c
 }
 
 bool BuildManager::initFolders() {
-    QDir dir(m_projectdir);
+
+    QFileInfo pro(m_projectfile);
+    QDir dir = pro.absoluteDir();
     if(!dir.cd("..")) {
         return false;
     }
-    QStringList filesList = findFilesInsideDir("*.pro", m_projectdir);
 
-    if(filesList.size() < 1){
-        return false;
-    }
-
-    QFile f(filesList.first());
+    QFile f(m_projectfile);
     if(!f.open(QIODevice::ReadOnly | QIODevice::Text)){
         return false;
     }
@@ -76,18 +73,21 @@ bool BuildManager::initFolders() {
 
     proFile.replace(" ", "");
     int tempIndex = proFile.indexOf(QRegExp("TARGET=") );
-    if(tempIndex < 0){
-        return false;
-    }
-    int beginTarget = tempIndex + 7;
+    if(tempIndex < 0) {
 
-    tempIndex = proFile.indexOf("\n", beginTarget);
-    int longTraget = -1;
+        projectName = pro.baseName();
+    } else {
+        int beginTarget = tempIndex + 7;
 
-    if(tempIndex >= 0){
-        longTraget = tempIndex - beginTarget;
+        tempIndex = proFile.indexOf("\n", beginTarget);
+        int longTraget = -1;
+
+        if(tempIndex >= 0){
+            longTraget = tempIndex - beginTarget;
+        }
+        projectName = proFile.mid(beginTarget, longTraget);
     }
-    projectName = proFile.mid(beginTarget, longTraget);
+
 
     if(!createFulder(dir, tempBuildFolder, "Build-" + projectName)){
         return false;
@@ -113,7 +113,7 @@ bool BuildManager::build(){
 
     pQMake.setProgram(qmake);
     pQMake.setWorkingDirectory(tempBuildFolder);
-    pQMake.setArguments(QStringList() <<  m_projectdir);
+    pQMake.setArguments(QStringList() <<  m_projectfile);
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.insert("LD_LIBRARY_PATH", m_qtdir + "/lib");
