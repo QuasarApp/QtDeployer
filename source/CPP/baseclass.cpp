@@ -3,7 +3,7 @@
 
 QString BaseClass::m_qtdir = QString();
 QString BaseClass::m_outputdir = QString();
-QString BaseClass::m_projectdir = QString();
+QString BaseClass::m_projectfile = QString();
 QString BaseClass::m_executablepath = QString();
 QString BaseClass::m_binarycreator = QString();
 QString BaseClass::projectName = QString();

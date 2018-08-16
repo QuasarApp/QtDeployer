@@ -48,7 +48,7 @@ ColumnLayout {
 		}
 
 		Button {
-			text: "Browse"
+            text: qsTr("Browse")
 			onClicked: fd.open()
 			Material.background: buttonColor
 		}

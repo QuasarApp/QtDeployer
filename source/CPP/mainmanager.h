@@ -15,8 +15,6 @@ class MainManager : public BaseClass
 
 	Q_PROPERTY(int state READ state WRITE setState NOTIFY stateChanged)
     Q_PROPERTY(QString outDir READ outDir NOTIFY outDirChanged)
-    Q_PROPERTY(QString appVer READ appVer)
-
 
 	CppManager *m_cpp;
 	QmlManager *m_qml;

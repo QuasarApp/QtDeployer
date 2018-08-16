@@ -62,8 +62,10 @@ QStringList PluginManager::findPluginsFromModules()
 
 QStringList PluginManager::extractModules()
 {
-	QStringList proandprifiles = findFilesInsideDir("*.pro", m_projectdir);
-	proandprifiles << findFilesInsideDir("*.pri", m_projectdir);
+    QStringList proandprifiles =
+            findFilesInsideDir("*.pro", QFileInfo(m_projectfile).absoluteDir().path());
+    proandprifiles << findFilesInsideDir("*.pri",
+                                         QFileInfo(m_projectfile).absoluteDir().path());
 
 	QStringList modules;
 	for (const QString &file : proandprifiles)
